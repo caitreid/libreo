@@ -1,5 +1,4 @@
 
-
 module.exports = function(sequelize, DataTypes) {
   var Topic = sequelize.define("Topic", {
     topic_name: {
@@ -11,16 +10,43 @@ module.exports = function(sequelize, DataTypes) {
     	type: DataTypes.TEXT,
     	allowNull: false
     }
-    // {
-	   //  classMethods: {
-	   //      associate: function(models) {
-	   //        // Associating Author with Posts
-	   //        // When an Topic is deleted, also delete any associated Links
-	   //        Topic.hasMany(models.Links, {
-	   //          onDelete: "cascade"
-	   //        });
-	   //      }
-	   //  }
+  }, //ends var Topic
+    {
+      classMethods: {
+        associate: function(models) {
+          Topic.hasMany(models.Links, {
+            onDelete: "cascade"
+          });
+        }
+      }
+    },
+
+      {
+        classMethods: {
+          associate: function(models) {
+            Topic.belongsTo(models.Subject, {
+              foreignKey: {
+                allowNull: false
+              }
+            }); //ends belongsTo
+          }
+        }
+      }
+    )
+  return Topic;
+};
+
+
+// {
+     //  classMethods: {
+     //      associate: function(models) {
+     //        // Associating Author with Posts
+     //        // When an Topic is deleted, also delete any associated Links
+     //        Topic.hasMany(models.Links, {
+     //          onDelete: "cascade"
+     //        });
+     //      }
+     //  }
     // },
     // {
     //   classMethods: {
@@ -34,7 +60,3 @@ module.exports = function(sequelize, DataTypes) {
     //     }
     //   }
     // }
-
-  });
-  return Topic;
-};
