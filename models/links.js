@@ -2,16 +2,16 @@
 
 module.exports = function(sequelize, DataTypes) {
   var Links = sequelize.define("Links", {
-    article: {
-      type: DataTypes.TEXT,
+    type: {
+      type: DataTypes.STRING,
       // If a customer is to be created, they must have a name
       allowNull: false
     },
-    video: {
+    title: {
     	type: DataTypes.TEXT,
     	allowNull: false
     },
-    book: {
+    url: {
       type: DataTypes.TEXT,
       allowNull: false
     }
