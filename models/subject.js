@@ -12,7 +12,18 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       // If a customer is to be created, they must have a name
       allowNull: false
-    }
+    },
+    // {
+	   //  classMethods: {
+	   //  	// Associating Subjects with Topics
+	   //      associate: function(models) {
+	   //        // When an Subject is deleted, also delete any associated Topics
+	   //        Subject.hasMany(models.Topic, {
+	   //          onDelete: "cascade"
+	   //        });
+	   //      }
+	   //  }
+    // }
   });
   return Subject;
 };

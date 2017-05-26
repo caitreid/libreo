@@ -15,6 +15,22 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.TEXT,
       allowNull: false
     }
+    
   });
   return Links;
 };
+
+
+// {
+//       // We're saying that we want our Topics to have Links
+//       classMethods: {
+//         associate: function(models) {
+//           // An Author (foreignKey) is required or a Post can't be made
+//           Links.belongsTo(models.Topic, {
+//             foreignKey: {
+//               allowNull: false
+//             }
+//           });
+//         }
+//       }
+//     }
