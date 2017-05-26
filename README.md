@@ -1,5 +1,3 @@
-# project2
+# Libreo
 
-Behzad
-
-caitlin
+Crowd-sourced Massive Open Online Courses: designed by you.
