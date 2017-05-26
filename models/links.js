@@ -1,5 +1,4 @@
 
-
 module.exports = function(sequelize, DataTypes) {
   var Links = sequelize.define("Links", {
     type: {
@@ -15,8 +14,19 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.TEXT,
       allowNull: false
     }
-    
-  });
+  },
+      {
+        classMethods: {
+          associate: function(models) {
+            Links.belongsTo(models.Topic, {
+              foreignKey: {
+                allowNull: false
+              }
+            }); // ends belongsTo
+          }
+        }
+      }
+  );
   return Links;
 };
 
@@ -34,3 +44,5 @@ module.exports = function(sequelize, DataTypes) {
 //         }
 //       }
 //     }
+
+
