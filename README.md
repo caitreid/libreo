@@ -1,3 +1,7 @@
 # Libreo
 
-Crowd-sourced MOOCs designed by you.
+
+Crowd-sourced Massive Open Online Courses: designed by you.
+
+Test
+
