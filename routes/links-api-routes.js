@@ -21,24 +21,26 @@ module.exports = function(app) {
     }
 
   // GET route for getting all of the links
-  app.get("/api/links", function(req, res, next) {
+  app.get("/api/links", loggedIn, function(req, res, next) {
     var query = {};
     if (req.query.topic_id) {
       query.TopicId = req.query.topic_id;
     }
-    // Here we add an "include" property to our options in our findAll query
-    // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.Author
+   //left outer join including both sunject and topic
     db.Links.findAll({
       where: query,
-      include: [db.Topic]
+      include: [{
+        model: subject
+      },{
+        model: topic
+      }]
     }).then(function(dbLinks) {
       res.json(dbLinks);
     });
   });
 
   // Get rotue for retrieving a single post
-  app.get("/api/links/:id", function(req, res, next) {
+  app.get("/api/links/:id", loggedIn, function(req, res, next) {
     // Here we add an "include" property to our options in our findOne query
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.Author
@@ -46,21 +48,25 @@ module.exports = function(app) {
       where: {
         id: req.params.id
       },
-      include: [db.Topic]
+      include: [{
+        model: subject
+      },{
+        model: topic
+      }]
     }).then(function(dbLinks) {
       res.json(dbLinks);
     });
   });
 
   // POST route for saving a new post
-  app.post("/api/links", function(req, res, next) {
+  app.post("/api/links", loggedIn, function(req, res, next) {
     db.Links.create(req.body).then(function(dbLinks) {
       res.json(dbLinks);
     });
   });
 
   // DELETE route for deleting links
-  app.delete("/api/links/:id", function(req, res, next) {
+  app.delete("/api/links/:id", loggedIn, function(req, res, next) {
     db.Links.destroy({
       where: {
         id: req.params.id
@@ -71,7 +77,7 @@ module.exports = function(app) {
   });
 
   // PUT route for updating links
-  app.put("/api/links", function(req, res, next) {
+  app.put("/api/links", loggedIn, function(req, res, next) {
     db.Links.update(
       req.body,
       {

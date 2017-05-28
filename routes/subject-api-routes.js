@@ -11,25 +11,29 @@ module.exports = function(app) {
     }
 
   app.get("/api/subject", loggedIn, function(req, res, next) {
-    // Here we add an "include" property to our options in our findAll query
-    // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.Post
+    // including topic and links as two objects in include array
     db.Subject.findAll({
-      include: [db.Topic]
+      include: [{
+        model: topic
+      },{
+        model: links
+      }]
     }).then(function(dbSubject) {
       res.json(dbSubject);
     });
   });
   //loggedIn added
   app.get("/api/subject/:id", loggedIn, function(req, res, next) {
-    // Here we add an "include" property to our options in our findOne query
-    // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.Post
+    
     db.Subject.findOne({
       where: {
         id: req.params.id
       },
-      include: [db.Topic]
+      include: [{
+        model: topic
+      },{
+        model: links
+      }]
     }).then(function(dbSubject) {
       res.json(dbSubject);
     });
