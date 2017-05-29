@@ -34,6 +34,7 @@ module.exports = function(app) {
       },{
         model: links
       }]
+      
     }).then(function(dbTopic) {
       res.json(dbTopic);
     });
