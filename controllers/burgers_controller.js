@@ -48,7 +48,8 @@ router.post("/burgers/create", function(req, res) {
     // log the result to our terminal/bash window
     console.log(dbBurger);
     // redirect
-    res.redirect("/");
+    res.redirec
+    t("/");
   });
 });
 
