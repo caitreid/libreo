@@ -13,11 +13,17 @@ module.exports = function(app) {
   app.get("/api/subject", loggedIn, function(req, res, next) {
     // including topic and links as two objects in include array
     db.Subject.findAll({
-      include: [{
-        model: topic
-      },{
-        model: links
-      }]
+      include: [
+      {
+        model: topic,
+        include: [
+        {
+          model: links
+        }
+      ]
+    }
+    ]
+    
     }).then(function(dbSubject) {
       res.json(dbSubject);
     });
@@ -29,11 +35,17 @@ module.exports = function(app) {
       where: {
         id: req.params.id
       },
-      include: [{
-        model: topic
-      },{
-        model: links
-      }]
+       include: [
+      {
+        model: topic,
+        include: [
+        {
+          model: links
+        }
+      ]
+    }
+    ]
+    
     }).then(function(dbSubject) {
       res.json(dbSubject);
     });

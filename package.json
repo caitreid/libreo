@@ -6,21 +6,24 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository" :
-    { "type" : "git"
-    , "url" : "https://github.com/caitlinreid1/libreo.git"
-    },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/caitlinreid1/libreo.git"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.14.2",
     "express": "^4.13.3",
     "express-handlebars": "^2.0.1",
+    "install": "^0.10.1",
     "method-override": "^2.3.5",
     "mysql": "^2.12.0",
+    "npm": "^4.6.1",
+    "passport-local": "^1.0.0",
     "sequelize": "^3.27.0"
   },
   "devDependencies": {
     "handlebars-helper-css": "^0.1.0"
   }
-} 
+}
