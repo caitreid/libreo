@@ -38,6 +38,7 @@ module.exports = function(app) {
         model: db.Topic
       }]
     }).then(function(dbLinks) {
+      console.log(dbLinks);
       res.json(dbLinks);
     });
   });
@@ -55,6 +56,7 @@ module.exports = function(app) {
         model: db.Topic
       }]
     }).then(function(dbLinks) {
+      console.log(dbLinks);
       res.json(dbLinks);
     });
   });
@@ -62,6 +64,7 @@ module.exports = function(app) {
   // POST route for saving a new post
   app.post("/api/links", loggedIn, function(req, res, next) {
     db.Links.create(req.body).then(function(dbLinks) {
+      console.log(dbLinks);
       res.json(dbLinks);
     });
   });
@@ -73,6 +76,7 @@ module.exports = function(app) {
         id: req.params.id
       }
     }).then(function(dbLinks) {
+      console.log(dbLinks);
       res.json(dbLinks);
     });
   });
@@ -86,6 +90,7 @@ module.exports = function(app) {
           id: req.body.id
         }
       }).then(function(dbLinks) {
+        console.log(dbLinks);
         res.json(dbLinks);
       });
   });

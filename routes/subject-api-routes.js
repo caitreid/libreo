@@ -32,6 +32,7 @@ module.exports = function(app) {
     ]
     
     }).then(function(dbSubject) {
+      console.log(dbSubject);
       res.json(dbSubject);
     });
   });
@@ -55,12 +56,14 @@ module.exports = function(app) {
     
     
     }).then(function(dbSubject) {
+      console.log(dbSubject);
       res.json(dbSubject);
     });
   });
 
   app.post("/api/subject", loggedIn, function(req, res, next) {
     db.Subject.create(req.body).then(function(dbSubject) {
+      console.log(dbSubject);
       res.json(dbSubject);
     });
   });
@@ -71,6 +74,7 @@ module.exports = function(app) {
         id: req.params.id
       }
     }).then(function(dbSubject) {
+      console.log(dbSubject);
       res.json(dbSubject);
     });
   });

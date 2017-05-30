@@ -27,6 +27,7 @@ module.exports = function(app) {
         model: db.Links
       }]
     }).then(function(dbTopic) {
+      console.log(dbTopic);
       res.json(dbTopic);
     });
   });
@@ -44,12 +45,14 @@ module.exports = function(app) {
       }]
       
     }).then(function(dbTopic) {
+      console.log(dbTopic);
       res.json(dbTopic);
     });
   });
 
   app.post("/api/topic", loggedIn, function(req, res, next) {
     db.Topic.create(req.body).then(function(dbTopic) {
+      console.log(dbTopic);
       res.json(dbTopic);
     });
   });
@@ -60,6 +63,7 @@ module.exports = function(app) {
         id: req.params.id
       }
     }).then(function(dbTopic) {
+      console.log(dbTopic);
       res.json(dbTopic);
     });
   });
