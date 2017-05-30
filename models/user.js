@@ -1,5 +1,7 @@
 var Sequelize = require("sequelize"); 
-var sequelize = require("./config/config.js"); 
+// var sequelize = require("./config/config.js"); 
+
+module.exports = function(sequelize, DataTypes) {
 var User = sequelize.define("User", {
 	id: {
 		type: Sequelize.INTEGER,
@@ -12,10 +14,10 @@ var User = sequelize.define("User", {
 	password: {
 		type: Sequelize.STRING
 	},
-	return User;	
-}
-return User;
+		
 );
+return User;
+};
 
 
 user.sync({}).then(function () {
@@ -24,4 +26,4 @@ user.sync({}).then(function () {
 });
 
 // Makes the user Model and will also create a table
-module.exports = User;
+// module.exports = User;
