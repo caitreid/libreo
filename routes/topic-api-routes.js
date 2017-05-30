@@ -6,7 +6,7 @@ var subject = require('./models/subject.js');
 var topic = require('./models/topic.js');
 var passport = require('passport');
 var Sequelize = require("sequelize");
-var sequelize = require("./config/connection.js");
+var sequelize = require("./config/config.js");
 
 module.exports = function(app) {
 
