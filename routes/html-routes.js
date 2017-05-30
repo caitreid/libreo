@@ -23,29 +23,7 @@ app.get("/", function(req, res) {
 });
 
 module.exports = function(app){
-	
-	// app.get('/', loggedIn, function(req, res) {
 
-	// 	clients.findAll({
-	// 		where: {
-	// 			employee_id: req.user.id
-	// 		},
-	// 		include: [{
-	// 			model: invoices
-	// 		}],
-	// 		order: [
-	// 			[invoices, 'date_created', 'DESC']
-	// 		]
-	// 	}).then(function(data){
-	// 		// res.json(data);
-	// 		res.render('dashboard',{
-	// 			isAuthenticated: req.isAuthenticated(),
-	// 			user: req.user,
-	// 			myClients: data
-	// 		});
-	// 	});
-
-	// });
 
 	app.get('/login', function(req, res){
 		res.render('login');
