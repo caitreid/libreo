@@ -1,4 +1,11 @@
 var db = require("../models");
+var users = require('./models/users.js');
+var links = require('./models/links.js');
+var subject = require('./models/subject.js');
+var topic = require('./models/topic.js');
+var passport = require('passport');
+var Sequelize = require("sequelize");
+var sequelize = require("./config/connection.js");
 
 module.exports = function(app) {
 
@@ -57,3 +64,33 @@ module.exports = function(app) {
   });
 
 };
+
+ app.get('/create-topic', loggedIn, function(req, res, next){
+        console.log('userID:');
+        console.log(req.user.id);
+        res.render('create-topic',{
+            // isAuth returns true or false
+            isAuthenticated: req.isAuthenticated(),
+            user: req.user
+        });
+    });
+
+
+    app.get('/topic', loggedIn, function(req, res, next){
+        topic.findAll({
+                 include: [{
+        model: subject
+      },{
+        model: links
+      }],
+            order: 'id DESC'
+        }).then(function(result){
+            //var data = {'topic':result};
+            //res.json(data);
+            res.render('topic',{'topic':result,
+                // isAuth returns true or false
+                isAuthenticated: req.isAuthenticated(),
+                user: req.user
+            });
+        });
+    });

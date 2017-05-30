@@ -1,12 +1,14 @@
-// *********************************************************************************
-// api-routes.js - this file offers a set of routes for displaying and saving data to the db
-// *********************************************************************************
 
-// Dependencies
-// =============================================================
 
 // Requiring our models
 var db = require("../models");
+var users = require('./models/users.js');
+var links = require('./models/links.js');
+var subject = require('./models/subject.js');
+var topic = require('./models/topic.js');
+var passport = require('passport');
+var Sequelize = require("sequelize");
+var sequelize = require("./config/connection.js");
 
 // Routes
 // =============================================================
@@ -87,3 +89,33 @@ module.exports = function(app) {
       });
   });
 };
+
+ app.get('/create-link', loggedIn, function(req, res, next){
+        console.log('userID:');
+        console.log(req.user.id);
+        res.render('create-link',{
+            // isAuth returns true or false
+            isAuthenticated: req.isAuthenticated(),
+            user: req.user
+        });
+    });
+
+
+    app.get('/link', loggedIn, function(req, res, next){
+        link.findAll({
+                 include: [{
+        model: subject
+      },{
+        model: links
+      }],
+            order: 'id DESC'
+        }).then(function(result){
+            //var data = {'link':result};
+            //res.json(data);
+            res.render('link',{'link':result,
+                // isAuth returns true or false
+                isAuthenticated: req.isAuthenticated(),
+                user: req.user
+            });
+        });
+    });
