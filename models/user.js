@@ -13,9 +13,9 @@ var User = sequelize.define("User", {
 	},
 	password: {
 		type: Sequelize.STRING
-	},
+	}
 		
-);
+
 return User;
 };
 
