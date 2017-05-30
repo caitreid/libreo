@@ -22,9 +22,9 @@ module.exports = function(app) {
    
     db.Topic.findAll({
       include: [{
-        model: subject
+        model: db.Subject
       },{
-        model: links
+        model: db.Links
       }]
     }).then(function(dbTopic) {
       res.json(dbTopic);
@@ -38,9 +38,9 @@ module.exports = function(app) {
         id: req.params.id
       },
       include: [{
-        model: subject
+        model: db.Subject
       },{
-        model: links
+        model: db.Links
       }]
       
     }).then(function(dbTopic) {
@@ -78,11 +78,11 @@ module.exports = function(app) {
 
 
     app.get('/topic', loggedIn, function(req, res, next){
-        topic.findAll({
+        db.Topic.findAll({
                  include: [{
-        model: subject
+        model: db.Subject
       },{
-        model: links
+        model: db.Links
       }],
             order: 'id DESC'
         }).then(function(result){

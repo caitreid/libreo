@@ -2,6 +2,7 @@
 
 // Requiring our models
 var db = require("../models");
+var express = require("express");
 var users = require('./models/users.js');
 var links = require('./models/links.js');
 var subject = require('./models/subject.js');
@@ -32,9 +33,9 @@ module.exports = function(app) {
     db.Links.findAll({
       where: query,
       include: [{
-        model: subject
+        model: db.Subject
       },{
-        model: topic
+        model: db.Topic
       }]
     }).then(function(dbLinks) {
       res.json(dbLinks);
@@ -49,9 +50,9 @@ module.exports = function(app) {
         id: req.params.id
       },
       include: [{
-        model: subject
+        model: db.Subject
       },{
-        model: topic
+        model: db.Topic
       }]
     }).then(function(dbLinks) {
       res.json(dbLinks);
@@ -102,11 +103,11 @@ module.exports = function(app) {
 
 
     app.get('/link', loggedIn, function(req, res, next){
-        link.findAll({
+        db.Link.findAll({
                  include: [{
-        model: subject
+        model: db.Subject
       },{
-        model: links
+        model: db.Links
       }],
             order: 'id DESC'
         }).then(function(result){

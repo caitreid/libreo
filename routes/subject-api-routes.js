@@ -22,10 +22,10 @@ module.exports = function(app) {
     db.Subject.findAll({
       include: [
       {
-        model: topic,
+        model: db.Topic,
         include: [
         {
-          model: links
+          model: db.Links
         }
       ]
     }
@@ -44,10 +44,10 @@ module.exports = function(app) {
       },
        include: [
       {
-        model: topic,
+        model: db.Topic,
         include: [
         {
-          model: links
+          model: db.Links
         }
       ]
     }
@@ -89,13 +89,13 @@ module.exports = function(app) {
 
 
     app.get('/subject', loggedIn, function(req, res, next){
-        subject.findAll({
+        db.Subject.findAll({
                    include: [
               {
-                model: topic,
+                model: db.Topic,
                 include: [
                 {
-                  model: links
+                  model: db.Links
                 }
               ]
             }
