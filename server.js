@@ -1,13 +1,3 @@
-// Solution 2: Customer Relations
-// ===========================================
-
-// Step 1: Created a Customer model in ./models/customer.js
-// Step 2: Updated the Burger model to have a hasOne(models.Customer) relation
-// Step 3: Updated the handlebars to display a customers name if there's a 'Customers' property on the Burger
-// Step 4: Updated queries in burgerController for updating a burger to add the CustomerId
-// Step 5: Updated findAll query  in burger_controller for burgers to "include" the customer
-// Step 6: Updated findAll query in burger_controller to order returned burgers by burger_name.
-
 
 var express = require("express");
 var bodyParser = require("body-parser");
@@ -33,15 +23,87 @@ app.engine("handlebars", exphbs({
 }));
 app.set("view engine", "handlebars");
 
-var routes = require("./controllers/burgers_controller");
+var routes = require("./controllers/controllers");
 
 app.use("/", routes);
-app.use("/update", routes);
-app.use("/create", routes);
+app.use("/subjects", routes);
+app.use("/subjects/create", routes);
+app.use("/topics", routes);
+app.use("/topics/create", routes);
+app.use("links", routes);
+app.use("links/create", routes);
+
+//which route is being defined/called?
 
 
 // listen on port 3000
 var port = process.env.PORT || 3000;
 db.sequelize.sync().then(function() {
   app.listen(port);
+  console.log("app is listening on port: " + port)
 });
+
+
+
+
+// // initial requires
+// var express = require('express');
+// var bodyParser = require('body-parser');
+
+// // setup the express app
+// var app = express();
+
+// // use body-parser to help express handle requests
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({extended: true}));
+// app.use(bodyParser.text());
+// app.use(bodyParser.json({type:'application/vnd.api+json'}));
+
+// // set up handlebars for express
+// var exphbs = require('express-handlebars');
+// app.engine('handlebars', exphbs({
+//   defaultLayout: 'main',
+//     extname: '.handlebars',
+//     layoutsDir: 'app/views/layouts'
+// }));
+// app.set('view engine', 'handlebars');
+// app.set('views', __dirname + '/app/views');
+
+// // load the static files
+// var staticContentFolder = __dirname + '/app/public';
+// app.use(express.static(staticContentFolder));
+
+
+// // require passport.js
+// // require("./app/config/passport.js")(app)
+
+// // express sitemap app
+// // var sitemap = require('express-sitemap');
+// // var map = sitemap({
+// //     generate: app
+// // });
+
+// // app.get('/sitemap.xml', function(req, res) { // send XML map
+// //     map.XMLtoWeb(res);
+// // }).get('/robots.txt', function(req, res) { // send TXT map
+// //     map.TXTtoWeb(res);
+// // });
+
+// // require the api and html paths
+// require("./routes/subject-api-routes.js")(app)
+// require("./routes/topic-api-routes.js")(app)
+// require("./routes/links-api-routes.js")(app)
+// require("./routes/html-api-routes.js")(app)
+// // require all of the database connections
+// // require("./app/models/db_relations.js")(app)
+
+
+// // start the server
+// var PORT = process.env.PORT || 8080;
+// app.listen(PORT, function(){
+// 	console.log('App is listening: ' + PORT);
+// });
+
+
+
+
