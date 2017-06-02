@@ -6,6 +6,7 @@ var router = express.Router();
 // grabbing our models
 var db = require("../models");
 
+
 // ROUTES //////////////////////////////////////
 
 // ================= INDEX =====================
@@ -14,15 +15,31 @@ router.get("/", function(req, res) {
   res.render("index");
 });
 
-
 // ==============  SIGN UP =====================
 router.get("/signup", function(req, res) {
   // send us to the next get function instead.
   res.render("signup");
 });
 
+// ==========  render Create Subject ===========
+router.get("/create-subject", function(req, res) {
+  // send us to the next get function instead.
+  res.render("create-subject");
+});
 
-// ==============  SUBJECT =====================
+// ==========  render Create Topic ===========
+router.get("/create-topic", function(req, res) {
+  // send us to the next get function instead.
+  res.render("create-topic");
+});
+
+// ==========  render Create Links ===========
+router.get("/create-links", function(req, res) {
+  // send us to the next get function instead.
+  res.render("create-links");
+});
+
+// ===================================  SUBJECT ===================================
 router.get("/subject", function(req, res) {
   // replace old function with sequelize function
   db.Subject.findAll({
@@ -42,7 +59,36 @@ router.get("/subject", function(req, res) {
   });
 });
 
-// "index" = layout you want to use,
+// Routes
+// =====================
+// get route -> index
+// router.get("/", function(req, res) {
+//   // send us to the next get function instead.
+//   res.redirect("/");
+// });
+
+//============================= get route to the home page ============================================
+
+router.get("/", function(req, res) {
+    // replace old function with sequelize function
+    db.Subject.findAll({
+        include: [db.Topic], // ???
+        // Here we specify we want to return our subjects in ordered by ascending subject_name
+        order: [
+            ["subject_name", "ASC"] // what is the exact name here???
+        ]
+    })
+    // use promise method to pass the subjects...
+        .then(function(dbSubject) {
+            // into the main index, updating the page
+            var hbsObject = {
+                subject: dbSubject
+            };
+            // console.log(hbsObject);
+            return res.render("index", hbsObject);
+
+        });
+});
 
 
 // GET ALL TOPICS
@@ -91,41 +137,20 @@ router.get("/topic/:topic_name", function(req, res) {
 
 
 
-
-// ==========  render Create Subject ===========
-router.get("/create-subject", function(req, res) {
-  // send us to the next get function instead.
-  res.render("create-subject");
-});
-
-// ==============  POST SUBJECT =====================
+// =======================POST subjects=========================
 router.post("/create-subject", function(req, res) {
-  // edited burger create to add in a burger_name
-  db.Subject.create({
-    subject_name: req.body.subject_name
-  })
-  // pass the result of our call
-  .then(function(dbSubject) {
-    // log the result to our terminal/bash window
-    console.log(dbSubject);
-    // redirect
-    res.redirect("/subjects");
-  });
+    // edited burger create to add in a burger_name
+    db.Subject.create({
+        subject_name:req.body.subject_name
+    })
+    // pass the result of our call
+        .then(function(data) {
+            // log the result to our terminal/bash window
+            console.log(data);
+            // redirect
+            res.redirect("/");
+        });
 });
-
-// ==========  render Create Topic ===========
-router.get("/create-topic", function(req, res) {
-  // send us to the next get function instead.
-  res.render("create-topic");
-});
-
-// ==========  render Create Links ===========
-router.get("/create-links", function(req, res) {
-  // send us to the next get function instead.
-  res.render("create-links");
-});
-
-// how do we make all of these "create" things available on the same page???
 
 
 // ==============  POST TOPIC =====================
