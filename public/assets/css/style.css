@@ -21,8 +21,10 @@ main {
   flex: 1 0 auto;
 }
 
-#title {
-  margin-left: 25px;
+@media (min-width: 993px) {
+  #title {
+    margin-left: 25px;
+  }
 }
 
 #top-bar {
