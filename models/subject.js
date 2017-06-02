@@ -2,7 +2,7 @@ module.exports = function(sequelize, DataTypes) {
   var Subject = sequelize.define("Subject", {
   	field_name: {
   		type: DataTypes.STRING,
-  		allowNull: false
+  		allowNull: true
   	},
     subject_name: {
       type: DataTypes.STRING,
