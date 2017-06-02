@@ -1,13 +1,28 @@
 body {
   width: 99%;
   height: 900px;
-  background-color: #fc6;
+  background-color: #ffffff;
+  /* footer */
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
-
-
 
 #icon1{
   width:25%;
+}
+
+
+#nav-mobile {
+  margin-top: 20px;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+#title {
+  margin-left: 25px;
 }
 
 #top-bar {
@@ -75,4 +90,5 @@ input.custInput {
 
 h1 {
   color: #f30;
+  text-align: center;
 }
