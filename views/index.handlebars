@@ -8,17 +8,17 @@
         </div>
    </div>
 </div>
+    <div class = "row">
+        <div class="col-sm-2">
+            <div class="collection">
+                <h3> Field 1</h3>
+            </div>
+        </div>
+
+        {{#each subject}}
+            <a href="/subject" class="collection-item">{{this.subject_name}}</a>
+
+        {{/each}}
+    </div>
 
 
-<div class = "row">
-   <div class="col-sm-2">
-       <div class="collection">
-   <h2> Field 1</h2>
-</div>
-   </div>
-
-{{#each subject}}
-    <a href="#!" class="collection-item">{{this.subject_name}}</a>
-
-{{/each}}
-</div>
