@@ -7,34 +7,39 @@ var methodOverride = require("method-override");
 var db = require("./models");
 
 var app = express();
+
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static(__dirname + "/public"));
 
 
 //----------------------------------+
-app.get('/', function (req, res) {
-    res.render('index');
-});
+// app.get('/', function (req, res) {
+//     res.render('index');
+// });
 
-app.get('/signup', function (req, res) {
-    res.render('signup');
-});
+// app.get('/signup', function (req, res) {
+//     res.render('signup');
+// });
 
-app.get('/field', function (req, res) {
-    res.render('field');
-});
+// app.get('/field', function (req, res) {
+//     res.render('field');
+// });
 
-app.get('/subject', function (req, res) {
-    res.render('subject');
-});
+// app.get('/subject', function (req, res) {
+//     res.render('subject');
+// });
 
-app.get('/topic', function (req, res) {
-    res.render('topic');
-});
 
-app.get('/create', function (req, res) {
-    res.render('create');
-});
+
+// // app.get('/topic', function (req, res) {
+// //     console.log("hey")
+// //     res.render('topic');
+
+// // });
+
+// app.get('/create', function (req, res) {
+//     res.render('create');
+// });
 
 //----------------------------------+
 
@@ -57,8 +62,8 @@ var routes = require("./controllers/controllers");
 app.use("/", routes);
 app.use("/subjects", routes);
 app.use("/subjects/create", routes);
-app.use("/topics", routes);
-app.use("/topics/create", routes);
+app.use("/topic", routes);
+app.use("/topic/create", routes);
 app.use("links", routes);
 app.use("links/create", routes);
 
