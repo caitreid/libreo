@@ -1,9 +1,34 @@
+
+<main>
+	<div class="banner2">
+		<h1>Subject</h1>
+	</div>
+	<nav id="breadcrumbs">
+		    <div class="nav-wrapper">
+		      <div class="col s12">
+		        <a href="#!" class="breadcrumb">First</a>
+		        <a href="#!" class="breadcrumb">Second</a>
+		        <a href="#!" class="breadcrumb">Third</a>
+		      </div>
+		    </div>
+		</nav>
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12 text-center" id="top-bar">
-			<h1> libreo </h1>
-			<p> SUBJECT</p>
-			<p>test test test test </p>
+		
+
+		<ul>
+		  	{{#each topic}}
+			    <li>
+			      <p>Name: {{this.topic_name}}</p>
+			      <p>description: {{this.decription}}</p>
+			    </li>
+		  	{{/each}}
+		</ul>
+
+		<div class="col-xs-12 text-center" id="top-bar">
 		</div>
 	</div>
 </div>
+</main>
+

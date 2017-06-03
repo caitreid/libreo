@@ -127,11 +127,10 @@ router.get("/topic/:topic_name", function(req, res) {
       where: {
         id: req.params.id
       },
-      include: [db.Links]
+      // include: [db.Links]
     }).then(function(dbTopic) {
-      
-      return res.render('topic', hbsObject);
-      console.log(topic_name)
+      return res.render('topic');
+      console.log(id)
     });
   });
 
