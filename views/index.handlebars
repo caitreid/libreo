@@ -1,14 +1,23 @@
 
 
-<main>
 <div class="container">
-	<div class="row">
-		<div class="col-xs-12 text-center" id="top-bar">
-			<img src="/assets/images/book-icon.png" alt="book" id="icon1"/><br>
-			<h1> libreo </h1>
-			<p> INDEX</p>
-		</div>
-	</div>
+    <div class="row">
+        <div class="col-xs-12 text-center" id="top-bar">
+            <h1> libreo </h1>
+        </div>
+   </div>
 </div>
-</main>
+    <div class = "row">
+        <div class="col-sm-2">
+            <div class="collection">
+                <h3> Field 1</h3>
+            </div>
+        </div>
+
+        {{#each subject}}
+            <a href="/subject" class="collection-item">{{this.subject_name}}</a>
+        {{/each}}
+    </div>
+
+
 

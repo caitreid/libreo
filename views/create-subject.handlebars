@@ -1,0 +1,35 @@
+
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center" id="top-bar">
+                <img src="/assets/images/book-icon.png" alt="book" id="icon1"/><br>
+                <h1> libreo </h1>
+                <p> CREATE SUBJECT </p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-10 col-md-offset-1">
+        <h3 class="enter"> Enter a subject </h3>
+
+        {{!-- section to add burgers --}}
+        <form class="create-update-form" action="/create-subject" method="POST">
+
+            <div class="form-group">
+                <textarea class="form-control input-sm" type="text" name="subject_name" rows="3" placeholder=""> </textarea>
+
+            </div>
+
+            <center><button class="btn-floating btn-large waves-effect waves-light red" type="submit"> Submit </button></center>
+
+        </form>
+    </div>
+    </div>
+
+    </div>
+
+
+</main>
+
