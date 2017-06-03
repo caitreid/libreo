@@ -12,38 +12,6 @@ var app = express();
 app.use(express.static(__dirname + "/public"));
 
 
-//----------------------------------+
-// app.get('/', function (req, res) {
-//     res.render('index');
-// });
-
-// app.get('/signup', function (req, res) {
-//     res.render('signup');
-// });
-
-// app.get('/field', function (req, res) {
-//     res.render('field');
-// });
-
-// app.get('/subject', function (req, res) {
-//     res.render('subject');
-// });
-
-
-
-// // app.get('/topic', function (req, res) {
-// //     console.log("hey")
-// //     res.render('topic');
-
-// // });
-
-// app.get('/create', function (req, res) {
-//     res.render('create');
-// });
-
-//----------------------------------+
-
-
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
   extended: false
@@ -66,8 +34,6 @@ app.use("/topic", routes);
 app.use("/topic/create", routes);
 app.use("links", routes);
 app.use("links/create", routes);
-
-//which route is being defined/called?
 
 
 // listen on port 3000
