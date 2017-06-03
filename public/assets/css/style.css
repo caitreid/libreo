@@ -6,12 +6,12 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  font-family: "Roboto", sans-serif; 
 }
 
 #icon1{
   width:25%;
 }
-
 
 #nav-mobile {
   margin-top: 20px;
@@ -19,6 +19,33 @@ body {
 
 main {
   flex: 1 0 auto;
+}
+
+.banner {
+  text-align: center;
+  padding-top: 45px;
+  height: 335px;
+  background: #3a95b1;
+  /*background: linear-gradient( 295deg, #3FA288, #37909A 30%, #247D92 65%, #06637F );*/
+
+}
+
+.banner2 {
+  text-align: center;
+  padding-top: 45px;
+  height: 235px;
+  background: #3a95b1;
+  /*background: linear-gradient( 295deg, #3FA288, #37909A 30%, #247D92 65%, #06637F );*/
+
+}
+
+#breadcrumbs{
+  color: black;
+  /*box-shadow: none;*/
+  height: 40px;
+  line-height: 44px;
+  background-color: #d39093;
+  padding-left: 25px;
 }
 
 @media (min-width: 993px) {
@@ -91,6 +118,6 @@ input.custInput {
 }
 
 h1 {
-  color: #f30;
+  color: lightgrey;
   text-align: center;
 }
