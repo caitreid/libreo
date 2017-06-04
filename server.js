@@ -19,8 +19,6 @@ app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true 
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
   extended: false
@@ -46,8 +44,6 @@ app.use("create-links", routes);
 app.use("/signup",routes);
 app.use("/login",routes);
 app.use("/welcome",routes);
-
-//which route is being defined/called?
 
 
 // listen on port 3000
