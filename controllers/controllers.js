@@ -1,11 +1,13 @@
 // =====================
 
 var express = require("express");
-
+var passport = require("../config/passport");
 var router = express.Router();
 // grabbing our models
 var db = require("../models");
-
+var request = require("request")
+// Requiring our custom middleware for checking if a user is logged in
+var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 // ROUTES //////////////////////////////////////
 
@@ -15,11 +17,77 @@ router.get("/", function(req, res) {
   res.render("index");
 });
 
-// ==============  SIGN UP =====================
+// ==============  SIGN UP ================================
 router.get("/signup", function(req, res) {
   // send us to the next get function instead.
   res.render("signup");
 });
+
+
+
+// ===========  Login page =================================
+router.get("/login", function(req, res) {
+    res.render("login", "");
+    if (req.user){
+      res.redirect("/members");
+    }
+});
+
+router.get("/members", function(req, res) {
+    res.render("members", "");
+});
+
+
+ // =====Route for logging user out============================
+
+  router.get("/logout", function(req, res) {
+    req.logout();
+    res.redirect("/");
+  });
+
+  router.get("/members", isAuthenticated, function(req, res) {
+    if (req.user) {
+      res.redirect("/members");
+    }
+  });
+
+// ====Route for getting some data about our user to be used client side========
+
+  router.get("/api/user_data", function(req, res) {
+    if (!req.user) {
+      // The user is not logged in, send back an empty object
+      res.json({});
+    }
+    else {
+      // Otherwise send back the user's email and id
+      // Sending back a password, even a hashed password, isn't a good idea
+      res.json({
+        email: req.user.email,
+        id: req.user.id
+      });
+    }
+  });
+
+  //=====================Sign Up Post Route ================================
+  router.post("/signup", function(req, res) {
+    console.log(req.body);
+    db.User.create({
+      email: req.body.email,
+      password: req.body.password
+    }).then(function() {
+      res.redirect("/login");
+    }).catch(function(err) {
+      console.log(err);
+    });
+  });
+
+ router.post("/login", passport.authenticate("local"), function(req, res) {
+    // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
+    // So we're sending the user back the route to the members page because the redirect will happen on the front end
+    // They won't get this or even be able to access this page if they aren't authed
+    res.redirect("/members");
+  });
+ 
 
 // ==========  render Create Subject ===========
 router.get("/create-subject", function(req, res) {
