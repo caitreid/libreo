@@ -13,6 +13,14 @@ body {
   width:25%;
 }
 
+.topic-description{
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  color: grey;
+}
+
 #nav-mobile {
   margin-top: 20px;
 }

@@ -241,13 +241,21 @@ router.get("/topic/:id", function(req, res) {
       		["id", "ASC"] // what is the exact name here???
         ]
     }).then(function(dbTopic) {
-    	// console.log(dbTopic[0].dataValues[0])
+    	console.log(dbTopic[0].dataValues.Links);
+    	console.log("-------")
+
+    	console.log(dbTopic[0].dataValues.Links[1].dataValues)
+
+
+    	// console.log(dbTopic[0].dataValues.Links)
     	// console.log(dbTopic[0].Instance.dataValues)
 	    // into the main index, updating the page
 	    var hbsObject = {
 	      topic: dbTopic,
+	      topic2: dbTopic[0].Links,
 	      // subject_name: dbTopic[0].Instance.dataValues,
-	      links: dbTopic[0].Links,
+	      links: dbTopic[0].dataValues.Links,
+	      
 	      // test: 'HELLO'
 	    };
     	// var hbsObject = {
