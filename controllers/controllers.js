@@ -45,12 +45,12 @@ router.get("/create-links", function(req, res) {
 router.get("/subject", function(req, res) {
   // replace old function with sequelize function
   db.Subject.findAll({
-    include: [db.Topic], // ???
+    include: [db.Topic],
+     // ???
     // Here we specify we want to return our subjects in ordered by ascending subject_name
     order: [
       ["subject_name", "ASC"] // what is the exact name here???
     ]
-
   })
   // use promise method to pass the subjects...
   .then(function(dbSubject) {
@@ -62,6 +62,8 @@ router.get("/subject", function(req, res) {
     return res.render("subject", hbsObject);
   });
 });
+
+// include all topics where subjectId == subject.id
 
 
 
@@ -77,17 +79,28 @@ router.get("/subject/:id", function(req, res) {
     order: [
       ["id", "ASC"] // what is the exact name here???
     ]
-
   })
   // use promise method to pass the subjects...
   .then(function(dbSubject) {
+  	console.log(dbSubject[0].dataValues.subject_name)
     // into the main index, updating the page
-    var hbsObject = {
-      subject: dbSubject
+    var testing = {
+      subject: dbSubject,
+      // subject_name: dbSubject[0],
+      topic: dbSubject[0].Topics,
+      // test: 'HELLO'
     };
   	
-    return res.render("subject", hbsObject);
+    return res.render("subject", testing);
   });
+
+  // db.Topic.findAll({
+  // 	where: {
+  // 		subjectId: db.Subject.id
+  // 	}
+  // }) 
+
+
 });
 // Routes
 // =====================
@@ -102,24 +115,24 @@ router.get("/subject/:id", function(req, res) {
 router.get("/", function(req, res) {
     // replace old function with sequelize function
     db.Subject.findAll({
-        include: [db.Topic], // ???
+        include: [db.Topic],
+
         // Here we specify we want to return our subjects in ordered by ascending subject_name
         order: [
-            ["subject_name", "ASC"] // what is the exact name here???
+            ["id", "ASC"] // what is the exact name here???
         ]
-        
     })
     // use promise method to pass the subjects...
-        .then(function(dbSubject) {
-            // into the main index, updating the page
-            var hbsObject = {
-                subject: dbSubject
-            };
-            // console.log(dbSubject)
-            // console.log(hbsObject);
-            return res.render("index", hbsObject);
+    .then(function(dbSubject) {
+        // into the main index, updating the page
+        var hbsObject = {
+            subject: dbSubject,
+            topic: dbSubject.topic
+        };
+        
+        return res.render("index", hbsObject);
 
-        });
+    });
 });
 
 
@@ -162,20 +175,24 @@ router.get("/topic", function(req, res) {
 
 //============ FIND ONE TOPIC ================
 router.get("/topic/:id", function(req, res) {
-    db.Topic.findOne({
-      where: {
-        id: req.params.id
-      },
+    db.Topic.findAll({
+	    where: {
+	        id: req.params.id
+	    },
 
-      include: [db.Links]
+	    include: [db.Links],
+	    include: [db.Subjects],
+
+        order: [
+      		["id", "ASC"] // what is the exact name here???
+        ]
     }).then(function(dbTopic) {
-    	// var hbsObject = {
-	    //   topic: dbTopic
-	    // };
-    // console.log(hbsObject);
-      return res.render('topic');
-      // console.log(dbTopic)
-      // console.log(id);
+    	var hbsObject = {
+	      topic: dbTopic
+	    };
+
+      	return res.render('topic', hbsObject);
+      
     });
   });
 
@@ -229,7 +246,28 @@ router.post("/create-links", function(req, res) {
   });
 });
 
+router.get("/field/:id", function(req, res) {
+  // replace old function with sequelize function
+  db.Subject.findOne({
+  	where: {
+  		id: req.params.field_name
+  	},
+    include: [db.Topic], 
 
+    order: [
+      ["subject_name", "ASC"] // what is the exact name here???
+    ]
+
+  })
+  .then(function(dbSubject) {
+    // into the main index, updating the page
+    var hbsObject = {
+      subject: dbSubject
+    };
+
+    return res.render("subject", hbsObject);
+  });
+});
 
 
 module.exports = router;

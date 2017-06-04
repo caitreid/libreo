@@ -3,16 +3,32 @@
 	<div class="banner2">
 		<h1>
 			{{#each topic}}
-				{{this.topic_name}}</h1>
+				{{this.topic_name}}
 			{{/each}}
 		</h1>
 	</div>
 	<nav id="breadcrumbs">
 		    <div class="nav-wrapper">
 		      <div class="col s12">
-		        <a href="#!" class="breadcrumb">First</a>
-		        <a href="#!" class="breadcrumb">Second</a>
-		        <a href="#!" class="breadcrumb">Third</a>
+	
+		        <a href="/" 
+		        class="breadcrumb">
+		        	{{#each topic}}
+						{{this.field_name}}
+					{{/each}}
+		        </a>
+		        
+		        <a href="" class="breadcrumb">
+					{{#each topic}}
+						{{this.subject_name}}</h1>
+					{{/each}}
+		        </a>
+
+		        <a href="" class="breadcrumb">
+					{{#each topic}}
+						{{this.topic_name}}</h1>
+					{{/each}}
+		        </a>
 		      </div>
 		    </div>
 		</nav>

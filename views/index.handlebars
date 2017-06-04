@@ -11,15 +11,19 @@
 
     <div class = "row">
         <div class="col-sm-2">
-            <div class="collection" id="field1">
-                <h3>Technology</h3>
+            <div class="collection" id="">
+                {{#each subject}}
+                    <p>{{this.id}}</p>
+
+                    <p>name: {{this.subject_name}} </p>
+                {{/each}}
+
+                {{log "what the heck"}}
+                {{#each subject}}
+                  {{@key}}: {{Technology}}
+                {{/each}}
             </div>
-            <div class="collection" id="field2">
-                <h3> Arts + Humanities</h3>
-            </div>
-            <div class="collection" id="field2">
-                <h3> Business</h3>
-            </div>
+            
         </div>
 
         {{#each subject}}
