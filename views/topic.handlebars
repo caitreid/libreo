@@ -20,7 +20,7 @@
 		        
 		        <a href="" class="breadcrumb">
 					{{#each topic}}
-						{{this.subject_name}}</h1>
+						{{../subject_name}}</h1>
 					{{/each}}
 		        </a>
 
@@ -38,23 +38,21 @@
 		
 
 		<ul>
-		  	{{#each topic}}
-			    <li>
-			      <p>ID: {{this.id}}</p>
-			      <p>Name: {{this.topic_name}}</p>
-			      <p>description: {{this.decription}}</p>
-			      <p> Link: {{this.Links}}</p>
-			      <p> {{this.Topics.TopicId}} </p>
-			    </li>
+		  	{{#each links}}  
+		      <div class="topic-description"> {{this.decription}}</div>
+		      <!-- <p><b>ID: {{this.dataValues.id}}</b></p> -->
+		      <p><b>Type: {{this.dataValues.type}}</b></p>
+		      	<p>Title: {{this.dataValues.title}}</p>
+			    <a>Url: {{this.dataValues.url}} </a>
+		      <!-- <p>Link: {{this.Links}}</p>
+		      <p>{{this.Topics.TopicId}}</p> -->
+			    
 		  	{{/each}}
 		</ul>
 
-			{{#each Links}}
-		  			{{links}}
-			    <p>Type: {{this.type}}</p>
-			    <p>Title: {{Topic.title}}<p>    
-			    <p>Title: {{this.title}}</p>
-			    <a>Url: {{this.url}} </a>
+			{{#each links}}
+		  			
+			    
 		  	{{/each}}
 
 		<div class="col-xs-12 text-center" id="top-bar">
