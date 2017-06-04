@@ -39,7 +39,9 @@ router.get("/create-links", function(req, res) {
   res.render("create-links");
 });
 
-// ===================================  SUBJECT ===================================
+// =====================  SUBJECT =========================
+
+
 router.get("/subject", function(req, res) {
   // replace old function with sequelize function
   db.Subject.findAll({
@@ -48,6 +50,7 @@ router.get("/subject", function(req, res) {
     order: [
       ["subject_name", "ASC"] // what is the exact name here???
     ]
+
   })
   // use promise method to pass the subjects...
   .then(function(dbSubject) {
@@ -55,10 +58,37 @@ router.get("/subject", function(req, res) {
     var hbsObject = {
       subject: dbSubject
     };
+
     return res.render("subject", hbsObject);
   });
 });
 
+
+
+// ==================
+router.get("/subject/:id", function(req, res) {
+  // replace old function with sequelize function
+  db.Subject.findAll({
+  	where: {
+        id: req.params.id
+      },
+    include: [db.Topic], // ???
+    // Here we specify we want to return our subjects in ordered by ascending subject_name
+    order: [
+      ["id", "ASC"] // what is the exact name here???
+    ]
+
+  })
+  // use promise method to pass the subjects...
+  .then(function(dbSubject) {
+    // into the main index, updating the page
+    var hbsObject = {
+      subject: dbSubject
+    };
+  	
+    return res.render("subject", hbsObject);
+  });
+});
 // Routes
 // =====================
 // get route -> index
@@ -67,7 +97,7 @@ router.get("/subject", function(req, res) {
 //   res.redirect("/");
 // });
 
-//============================= get route to the home page ============================================
+//=================== get route to the home page ============================
 
 router.get("/", function(req, res) {
     // replace old function with sequelize function
@@ -77,6 +107,7 @@ router.get("/", function(req, res) {
         order: [
             ["subject_name", "ASC"] // what is the exact name here???
         ]
+        
     })
     // use promise method to pass the subjects...
         .then(function(dbSubject) {
@@ -84,6 +115,7 @@ router.get("/", function(req, res) {
             var hbsObject = {
                 subject: dbSubject
             };
+            // console.log(dbSubject)
             // console.log(hbsObject);
             return res.render("index", hbsObject);
 
@@ -91,11 +123,13 @@ router.get("/", function(req, res) {
 });
 
 
-// GET ALL TOPICS
+
+// ============ GET ALL TOPICS ==============
 router.get("/topic", function(req, res) {
   // replace old function with sequelize function
   db.Topic.findAll({
-    // include: [db.Links], // ???
+    include: [db.Links], // ???
+    // include: [db.Links.TopicId],
     // Here we specify we want to return our subjects in ordered by ascending subject_name
     order: [
       ["topic_name", "ASC"] // what is the exact name here???
@@ -104,39 +138,50 @@ router.get("/topic", function(req, res) {
   // use promise method to pass the subjects...
   .then(function(dbTopic) {
     // into the main index, updating the page
-    console.log(dbTopic);
+    // console.log(dbTopic);
     var hbsObject = {
       topic: dbTopic
     };
     console.log(hbsObject);
+
+    console.log("------")
+    console.log(db.Links.TopicId);
+
+
     return res.render('topic', hbsObject);
+
     // res.render("index", hbsObject);
     
   });
 
-  console.log("this is a test.")
+  // console.log("this is a test.")
 });
 
 
-// FIND ONE TOPIC
-router.get("/topic/:topic_name", function(req, res) {
-    // Here we add an "include" property to our options in our findOne query
-    // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.Post
+
+
+//============ FIND ONE TOPIC ================
+router.get("/topic/:id", function(req, res) {
     db.Topic.findOne({
       where: {
         id: req.params.id
       },
-      // include: [db.Links]
+
+      include: [db.Links]
     }).then(function(dbTopic) {
+    	// var hbsObject = {
+	    //   topic: dbTopic
+	    // };
+    // console.log(hbsObject);
       return res.render('topic');
-      console.log(id)
+      // console.log(dbTopic)
+      // console.log(id);
     });
   });
 
 
 
-// =======================POST subjects=========================
+// ==================POST subjects=========================
 router.post("/create-subject", function(req, res) {
     // edited burger create to add in a burger_name
     db.Subject.create({
@@ -183,6 +228,7 @@ router.post("/create-links", function(req, res) {
     res.redirect("/links");
   });
 });
+
 
 
 

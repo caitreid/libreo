@@ -1,14 +1,28 @@
 
 <main>
 	<div class="banner2">
-		<h1>Subject</h1>
+		<h1>
+			{{#each subject}}
+				{{this.subject_name}}</h1>
+			{{/each}}
+		</h1>
 	</div>
 	<nav id="breadcrumbs">
 		    <div class="nav-wrapper">
 		      <div class="col s12">
-		        <a href="#!" class="breadcrumb">First</a>
-		        <a href="#!" class="breadcrumb">Second</a>
-		        <a href="#!" class="breadcrumb">Third</a>
+	
+		        <a href="#!" class="breadcrumb">
+		        	{{#each subject}}
+						{{this.field_name}}</h1>
+					{{/each}}
+
+		        </a>
+		        
+		        <a href="" class="breadcrumb">
+					{{#each subject}}
+						{{this.subject_name}}</h1>
+					{{/each}}
+		        </a>
 		      </div>
 		    </div>
 		</nav>
@@ -18,12 +32,16 @@
 		
 
 		<ul>
-		  	{{#each topic}}
+			
+		  	
+		  	{{#each subject}}
 			    <li>
-			      <p>Name: {{this.topic_name}}</p>
-			      <p>description: {{this.decription}}</p>
+			      <p> Topic: {{req.params.topic_name}} </p>
 			    </li>
+			      
 		  	{{/each}}
+
+
 		</ul>
 
 		<div class="col-xs-12 text-center" id="top-bar">

@@ -1,7 +1,11 @@
 
 <main>
 	<div class="banner2">
-		<h1>Topic</h1>
+		<h1>
+			{{#each topic}}
+				{{this.topic_name}}</h1>
+			{{/each}}
+		</h1>
 	</div>
 	<nav id="breadcrumbs">
 		    <div class="nav-wrapper">
@@ -20,16 +24,30 @@
 		<ul>
 		  	{{#each topic}}
 			    <li>
+			      <p>ID: {{this.id}}</p>
 			      <p>Name: {{this.topic_name}}</p>
 			      <p>description: {{this.decription}}</p>
+			      <p> Link: {{this.Links}}</p>
+			      <p> {{this.Topics.TopicId}} </p>
 			    </li>
 		  	{{/each}}
 		</ul>
+
 
 		<div class="col-xs-12 text-center" id="top-bar">
 		</div>
 	</div>
 </div>
 </main>
+
+
+
+
+
+
+
+
+
+
 
 
