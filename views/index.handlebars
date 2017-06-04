@@ -12,16 +12,18 @@
     <div class = "row">
         <div class="col-sm-2">
             <div class="collection" id="">
-                {{#each subject}}
-                    <p>{{this.id}}</p>
 
-                    <p>name: {{this.subject_name}} </p>
+                {{#each subject}}
+
+                    <p>name: {{this.field_name}} </p>   
+                {{/each}}
+                <h3>Topics</h3>
+                {{#each subject}}
+                    <p> topic: {{this.subject_name}}
                 {{/each}}
 
-                {{log "what the heck"}}
-                {{#each subject}}
-                  {{@key}}: {{Technology}}
-                {{/each}}
+                {{tech.dataValues.subject_name}}
+                {{biz}}
             </div>
             
         </div>
