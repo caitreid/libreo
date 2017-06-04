@@ -49,6 +49,13 @@
 		  	{{/each}}
 		</ul>
 
+			{{#each Links}}
+		  			{{links}}
+			    <p>Type: {{this.type}}</p>
+			    <p>Title: {{Topic.title}}<p>    
+			    <p>Title: {{this.title}}</p>
+			    <a>Url: {{this.url}} </a>
+		  	{{/each}}
 
 		<div class="col-xs-12 text-center" id="top-bar">
 		</div>

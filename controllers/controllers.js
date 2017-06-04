@@ -107,6 +107,31 @@ router.get("/create-links", function(req, res) {
   res.render("create-links");
 });
 
+//=================== get route to the home page ============================
+
+router.get("/", function(req, res) {
+    // replace old function with sequelize function
+    db.Subject.findAll({
+        include: [db.Topic],
+
+        // Here we specify we want to return our subjects in ordered by ascending subject_name
+        order: [
+            ["id", "ASC"] // what is the exact name here???
+        ]
+    })
+    // use promise method to pass the subjects...
+    .then(function(dbSubject) {
+        // into the main index, updating the page
+        var hbsObject = {
+            subject: dbSubject,
+            topic: dbSubject.topic
+        };
+        
+        return res.render("index", hbsObject);
+
+    });
+});
+
 // =====================  SUBJECT =========================
 
 
@@ -135,7 +160,7 @@ router.get("/subject", function(req, res) {
 
 
 
-// ==================
+// =============== GET single subject ==============
 router.get("/subject/:id", function(req, res) {
   // replace old function with sequelize function
   db.Subject.findAll({
@@ -161,47 +186,8 @@ router.get("/subject/:id", function(req, res) {
   	
     return res.render("subject", testing);
   });
-
-  // db.Topic.findAll({
-  // 	where: {
-  // 		subjectId: db.Subject.id
-  // 	}
-  // }) 
-
-
 });
-// Routes
-// =====================
-// get route -> index
-// router.get("/", function(req, res) {
-//   // send us to the next get function instead.
-//   res.redirect("/");
-// });
 
-//=================== get route to the home page ============================
-
-router.get("/", function(req, res) {
-    // replace old function with sequelize function
-    db.Subject.findAll({
-        include: [db.Topic],
-
-        // Here we specify we want to return our subjects in ordered by ascending subject_name
-        order: [
-            ["id", "ASC"] // what is the exact name here???
-        ]
-    })
-    // use promise method to pass the subjects...
-    .then(function(dbSubject) {
-        // into the main index, updating the page
-        var hbsObject = {
-            subject: dbSubject,
-            topic: dbSubject.topic
-        };
-        
-        return res.render("index", hbsObject);
-
-    });
-});
 
 
 
@@ -249,15 +235,24 @@ router.get("/topic/:id", function(req, res) {
 	    },
 
 	    include: [db.Links],
-	    include: [db.Subjects],
+	    // include: [db.Subjects],
 
         order: [
       		["id", "ASC"] // what is the exact name here???
         ]
     }).then(function(dbTopic) {
-    	var hbsObject = {
-	      topic: dbTopic
+    	// console.log(dbTopic[0].dataValues[0])
+    	// console.log(dbTopic[0].Instance.dataValues)
+	    // into the main index, updating the page
+	    var hbsObject = {
+	      topic: dbTopic,
+	      // subject_name: dbTopic[0].Instance.dataValues,
+	      links: dbTopic[0].Links,
+	      // test: 'HELLO'
 	    };
+    	// var hbsObject = {
+	    //   topic: dbTopic
+	    // };
 
       	return res.render('topic', hbsObject);
       
