@@ -8,6 +8,16 @@
 </div>
 <div class="row">
 <form class="col s12" id="links" method="POST" action="/create-links" class="task">
+
+    <div class="input-field col s12" id="create-topic-dropdown">
+        <select name="type" required method="POST" action="/create-links" value="" >
+          <option value="" disabled selected>Select</option>
+          {{#each topic}}
+          <option value="Article" >{{this.topic_name}}</option>
+          {{/each}}
+        </select>
+      <label>Topic</label>
+    </div>
             
     <!-- <div class="input-field col s12" id="create-topic-dropdown"> -->
         
@@ -46,9 +56,12 @@
         <input  name="url" placeholder="URL" id="url" type="text" method="POST" action="/create-links" value="" >
     </div>
 
-    <div class="input-field col s12">
+    <!-- <div class="input-field col s12">
         <input name="TopicId" placeholder="TopicID" id="TopicId" type="text" method="POST" action="/create-links" value="">
-        </div>
+        </div> -->
+
+     
+
 
      <button class="btn waves-effect waves-light" type="submit" name="action">Add
     <i class="material-icons right">send</i>

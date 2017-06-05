@@ -6,8 +6,18 @@
 <div class="row">
 
 <form class="col s12" id="topic" method="POST" action="/create-topic" class="task">
+		<div class="input-field col s12" id="create-topic-dropdown">
+	        <select name="type" required method="POST" action="/create-links" value="" >
+	          <option value="" disabled selected>Select</option>
+	          {{#each subject}}
+	          <option value="Article" >{{this.subject_name}}</option>
+	          {{/each}}
+	        </select>
+	      <label>Topic</label>
+	    </div>
 
-       <div class="input-field col s12" id="create-topic-dropdown">
+
+       <!-- <div class="input-field col s12" id="create-topic-dropdown">
        	  
 		    <select>
 		      <option value="" disabled selected>Select</option>
@@ -16,7 +26,7 @@
 		      <option value="3">Option 3</option>
 		    </select>
 		    <label>Select the Subject</label>
-	  </div>
+	  </div> -->
 
 	  <br>
 	  <br>
@@ -38,8 +48,6 @@
 		<div class="input-field col s12">
             <input name="decription" placeholder="Describe this topic in 2-3 sentences." id="topic_name" type="text" wrap="soft" method="POST" action="/create-topic" value="">
         </div>
-
-        
 
          <button class="btn waves-effect waves-light" type="submit" name="action">Add
         <i class="material-icons right">send</i>

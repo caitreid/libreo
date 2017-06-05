@@ -90,17 +90,7 @@ router.get("/create-subject", function(req, res) {
   res.render("create-subject");
 });
 
-// ==========  render Create Topic ===========
-router.get("/create-topic", function(req, res) {
-  // send us to the next get function instead.
-  res.render("create-topic");
-});
 
-// ==========  render Create Links ===========
-router.get("/create-links", function(req, res) {
-  // send us to the next get function instead.
-  res.render("create-links");
-});
 
 //============ GET home page ===============
 
@@ -305,8 +295,34 @@ router.post("/create-subject", function(req, res) {
 });
 
 
+// =============== GET : CREATE-TOPIC =============
+// get route, edited to match sequelize
+router.get("/create-topic", function(req, res) {
+  // replace old function with sequelize function
+  db.Subject.findAll({
+    // include: [db.Topic],
+    order: [
+      ["subject_name", "DESC"]
+    ]
+  })
+  .then(function(dbSubject) {
+    console.log(dbSubject);
+    console.log("this is happening")
+
+    // into the main index, updating the page
+    var hbsObject = {
+        subject: dbSubject,
+        // topic2: dbTopic[0].Links,
+        // subject_name: dbTopic[0].Instance.dataValues,
+        // links: dbTopic[0].dataValues.Links,
+      };
+    return res.render("create-topic", hbsObject);
+  });
+});
+
+
 // ==============  POST TOPIC =====================
-router.post("/create-topic", function(req, res) {
+router.post("/create-topic/create", function(req, res) {
   // edited burger create to add in a burger_name
   db.Topic.create({
     include: [db.Links],
@@ -324,8 +340,36 @@ router.post("/create-topic", function(req, res) {
 
 
 
+// =============== GET : CREATE-LINKS =============
+// get route, edited to match sequelize
+router.get("/create-links", function(req, res) {
+  // replace old function with sequelize function
+  db.Topic.findAll({
+    // include: [db.Topic],
+    order: [
+      ["topic_name", "DESC"]
+    ]
+  })
+  .then(function(dbTopic) {
+    console.log(dbTopic);
+    console.log("this is happening")
+    // into the main index, updating the page
+    var hbsObject = {
+        topic: dbTopic,
+        // topic2: dbTopic[0].Links,
+        // subject_name: dbTopic[0].Instance.dataValues,
+        // links: dbTopic[0].dataValues.Links,
+      };
+    return res.render("create-links", hbsObject);
+  });
+});
+
+
+
+
+
 // ==============  POST LINKS =====================
-router.post("/create-links", function(req, res) {
+router.post("/create-links/create", function(req, res) {
   db.Links.create({
     include: [db.Topic],
 
@@ -338,14 +382,14 @@ router.post("/create-links", function(req, res) {
   .then(function(dbLinks) {
     // log the result to our terminal/bash window
     console.log(dbLinks);
-    console.log(dbLinks[0])
+    console.log(dbLinks[0]);
+    // console.log(TopicId)
     // redirect
     res.redirect("/");
   })
   .catch(function (err) {
     console.log(err)
   });
-
 });
 
 
