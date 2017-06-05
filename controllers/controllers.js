@@ -106,33 +106,34 @@ router.get("/create-links", function(req, res) {
 
 router.get("/", function(req, res) {
     db.Subject.findAll({
-        where: {
-    		field_name : 'Business'
-    	}
+     //    group: {
+    		
+    	// 	"field_name"
+    	// }
         // order: [
         //     ["id", "ASC"] 
         // ]
     })
-    .then(function(dbBiz){
-    	var bizObj = {
-    		biz: dbBiz
-    	}
-    	return res.render(bizObj)
-    }),
-    db.Subject.findAll({
-    	where: {
-    		field_name : 'Technology'
-    	}
-    })
+    // .then(function(dbBiz){
+    // 	var bizObj = {
+    // 		biz: dbBiz
+    // 	}
+    // 	return res.render(bizObj)
+    // }),
+    // db.Subject.findAll({
+    // 	where: {
+    // 		field_name : 'Technology'
+    // 	}
+    // })
     .then(function(dbSubject) {
     	console.log(dbSubject);
     	console.log("-------")
         
-        var testing1 = {
+        var hbsObject = {
             subject: dbSubject       
         };
         
-        return res.render("index", testing1);
+        return res.render("index", hbsObject);
     })
 
     // db.Subject.findAll({
