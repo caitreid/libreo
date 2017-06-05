@@ -70,7 +70,7 @@ router.get("/members", function(req, res) {
       email: req.body.email,
       password: req.body.password
     }).then(function() {
-      res.redirect("/login");
+      res.redirect(307,"/login");
     }).catch(function(err) {
       console.log(err);
     });
