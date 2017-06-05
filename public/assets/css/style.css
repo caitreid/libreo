@@ -13,6 +13,28 @@ body {
   width:25%;
 }
 
+.collection {
+  border-color: none;
+}
+
+.subject-cloud {
+  margin: 30px;
+  margin-top: 20px;
+  margin-bottom:20px;
+  padding-right:20px;
+  font-size: 20px;
+  float: right;
+  text-align: center;
+}
+
+#index-topic-div{
+  text-align: center;
+}
+
+#index-subject-title {
+  text-align: center;
+}
+
 .topic-description{
   margin-top: 30px;
   margin-bottom: 30px;

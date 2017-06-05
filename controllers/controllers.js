@@ -11,11 +11,6 @@ var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 // ROUTES //////////////////////////////////////
 
-// ================= INDEX =====================
-router.get("/", function(req, res) {
-  // send us to the next get function instead.
-  res.render("index");
-});
 
 // ==============  SIGN UP ================================
 router.get("/signup", function(req, res) {
@@ -107,32 +102,59 @@ router.get("/create-links", function(req, res) {
   res.render("create-links");
 });
 
-//=================== get route to the home page ============================
+//============ GET home page ===============
 
 router.get("/", function(req, res) {
-    // replace old function with sequelize function
     db.Subject.findAll({
-        include: [db.Topic],
-
-        // Here we specify we want to return our subjects in ordered by ascending subject_name
-        order: [
-            ["id", "ASC"] // what is the exact name here???
-        ]
+     //    group: {
+    		
+    	// 	"field_name"
+    	// }
+        // order: [
+        //     ["id", "ASC"] 
+        // ]
     })
-    // use promise method to pass the subjects...
+    // .then(function(dbBiz){
+    // 	var bizObj = {
+    // 		biz: dbBiz
+    // 	}
+    // 	return res.render(bizObj)
+    // }),
+    // db.Subject.findAll({
+    // 	where: {
+    // 		field_name : 'Technology'
+    // 	}
+    // })
     .then(function(dbSubject) {
-        // into the main index, updating the page
+    	console.log(dbSubject);
+    	console.log("-------")
+        
         var hbsObject = {
-            subject: dbSubject,
-            topic: dbSubject.topic
+            subject: dbSubject       
         };
         
         return res.render("index", hbsObject);
+    })
 
-    });
+    // db.Subject.findAll({
+    // 	where: {
+    // 		field_name : 'Technology'
+    // 	}
+    // }).then(function(dbTech) {
+
+    // 	// console.log(dbTech.dataValues.subject_name);
+    // 	// console.log("-------")
+        
+    //     var hbsObject = {
+    //         tech: dbTech
+    //     };
+        
+    //     return res.render("index", hbsObject);
+
+    // });
 });
 
-// =====================  SUBJECT =========================
+// =============  SUBJECT ================
 
 
 router.get("/subject", function(req, res) {
@@ -246,22 +268,15 @@ router.get("/topic/:id", function(req, res) {
 
     	console.log(dbTopic[0].dataValues.Links[1].dataValues)
 
-
     	// console.log(dbTopic[0].dataValues.Links)
     	// console.log(dbTopic[0].Instance.dataValues)
-	    // into the main index, updating the page
+	   
 	    var hbsObject = {
 	      topic: dbTopic,
 	      topic2: dbTopic[0].Links,
 	      // subject_name: dbTopic[0].Instance.dataValues,
 	      links: dbTopic[0].dataValues.Links,
-	      
-	      // test: 'HELLO'
 	    };
-    	// var hbsObject = {
-	    //   topic: dbTopic
-	    // };
-
       	return res.render('topic', hbsObject);
       
     });
