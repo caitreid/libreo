@@ -288,6 +288,7 @@ router.get("/topic/:id", function(req, res) {
 router.post("/create-subject", function(req, res) {
     // edited burger create to add in a burger_name
     db.Subject.create({
+        include: [db.Topic],
         subject_name:req.body.subject_name,
         field_name: req.body.field_name
     })
@@ -295,6 +296,8 @@ router.post("/create-subject", function(req, res) {
         .then(function(data) {
             // log the result to our terminal/bash window
             console.log(data);
+            console.log(data);
+
             // redirect
             res.redirect("/");
         });
@@ -305,6 +308,7 @@ router.post("/create-subject", function(req, res) {
 router.post("/create-topic", function(req, res) {
   // edited burger create to add in a burger_name
   db.Topic.create({
+    include: [db.Links],
     topic_name: req.body.topic_name,
     decription: req.body.decription
   })

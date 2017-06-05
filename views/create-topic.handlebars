@@ -5,7 +5,17 @@
 </div>
 <div class="row">
 <form class="col s12" id="topic" method="POST" action="/create-topic" class="task">
-            
+
+       <div class="input-field col s12" id="create-topic-dropdown">
+       	  <label>Select the Subject</label>
+		    <select>
+		      <option value="" disabled selected>Choose your option</option>
+		      <option value="1">Option 1</option>
+		      <option value="2">Option 2</option>
+		      <option value="3">Option 3</option>
+		    </select>
+		    
+	  </div>
 
 
         <div class="input-field col s12" >
@@ -20,13 +30,18 @@
  
            
  
-
- 
-                
+          
 
          <button class="btn waves-effect waves-light" type="submit" name="action">Add
         <i class="material-icons right">send</i>
         </button>
    
     </form>
-
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<!-- <script src="script.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+<script>
+    $(document).ready(function() {
+      $('#create-topic-dropdown').material_select();
+    });
+</script>
