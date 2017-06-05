@@ -290,7 +290,8 @@ router.post("/create-subject", function(req, res) {
 router.post("/create-topic", function(req, res) {
   // edited burger create to add in a burger_name
   db.Topic.create({
-    topic_name: req.body.topic_name
+    topic_name: req.body.topic_name,
+    decription: req.body.decription
   })
   // pass the result of our call
   .then(function(dbTopic) {

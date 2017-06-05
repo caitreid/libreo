@@ -1,16 +1,30 @@
 <div class="container">
+<div class="row">
+<p><center><h1>ADD A TOPIC<h1></center></p>
 
-	<h1> libreo </h1>
-	<p> CREATE </p>
-
- 	<!-- Simple Textfield -->
-	<form action="#">
-	  
-	  		<br>
-	  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-	  	<input class="mdl-textfield__input" type="text" id="addr1">
-	  	<label class="mdl-textfield__label" for="addr1">Topic</label>
-	  </div>
-	 	 	
-	</form>
 </div>
+<div class="row">
+<form class="col s12" id="topic" method="POST" action="/create-topic" class="task">
+            
+
+        <div class="input-field col s12" >
+            <input  name="topic_name" placeholder="Topic" id="topic_name" type="text" value="" >
+        </div>
+
+		<div class="input-field col s12">
+            <input name="decription" placeholder="Your topic decription"    id="topic_name" type="text" method="POST" action="/create-topic" value="">
+        </div>
+
+
+ 
+           
+ 
+
+ 
+                
+
+         <button class="btn waves-effect waves-light" type="submit" name="action">Add
+        <i class="material-icons right">send</i>
+        </button>
+   
+    </form>
