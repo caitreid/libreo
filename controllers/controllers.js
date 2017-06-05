@@ -90,12 +90,6 @@ router.get("/create-subject", function(req, res) {
   res.render("create-subject");
 });
 
-// ==========  render Create Topic ===========
-router.get("/create-topic", function(req, res) {
-
-  // send us to the next get function instead.
-  res.render("create-topic");
-});
 
 
 //============ GET home page ===============
@@ -301,10 +295,34 @@ router.post("/create-subject", function(req, res) {
 });
 
 
+// =============== GET : CREATE-TOPIC =============
+// get route, edited to match sequelize
+router.get("/create-topic", function(req, res) {
+  // replace old function with sequelize function
+  db.Subject.findAll({
+    // include: [db.Topic],
+    order: [
+      ["subject_name", "DESC"]
+    ]
+  })
+  .then(function(dbSubject) {
+    console.log(dbSubject);
+    console.log("this is happening")
+
+    // into the main index, updating the page
+    var hbsObject = {
+        subject: dbSubject,
+        // topic2: dbTopic[0].Links,
+        // subject_name: dbTopic[0].Instance.dataValues,
+        // links: dbTopic[0].dataValues.Links,
+      };
+    return res.render("create-topic", hbsObject);
+  });
+});
 
 
 // ==============  POST TOPIC =====================
-router.post("/create-topic", function(req, res) {
+router.post("/create-topic/create", function(req, res) {
   // edited burger create to add in a burger_name
   db.Topic.create({
     include: [db.Links],
