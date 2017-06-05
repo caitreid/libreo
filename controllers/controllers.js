@@ -327,7 +327,9 @@ router.post("/create-topic", function(req, res) {
 router.post("/create-links", function(req, res) {
   // edited burger create to add in a burger_name
   db.Links.create({
-    link_name: req.body.link_name // double check the name of the column
+    type: req.body.type,
+    title: req.body.title,
+    url: req.body.url // double check the name of the column
   })
   // pass the result of our call
   .then(function(dbLinks) {
