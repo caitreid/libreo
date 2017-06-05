@@ -43,12 +43,33 @@ body {
   color: grey;
 }
 
+@media only screen and (min-width : 768px){
+  .signup-div {
+    width: 400px;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width : 768px){
+  .signup-div {
+    width: 75%;
+    margin: 0 auto;
+  }
+}
+
+
 #nav-mobile {
   margin-top: 20px;
 }
 
 main {
   flex: 1 0 auto;
+}
+
+.text-center{
+  text-align: center;
+  margin: 0 auto;
+  float: none;
 }
 
 .banner {
@@ -67,6 +88,11 @@ main {
   background: #3a95b1;
   /*background: linear-gradient( 295deg, #3FA288, #37909A 30%, #247D92 65%, #06637F );*/
 
+}
+
+#signup-header {
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 #breadcrumbs{

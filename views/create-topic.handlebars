@@ -4,27 +4,50 @@
 
 </div>
 <div class="row">
+
 <form class="col s12" id="topic" method="POST" action="/create-topic" class="task">
-            
+
+       <div class="input-field col s12" id="create-topic-dropdown">
+       	  
+		    <select>
+		      <option value="" disabled selected>Choose your option</option>
+		      <option value="1">Option 1</option>
+		      <option value="2">Option 2</option>
+		      <option value="3">Option 3</option>
+		    </select>
+		    <label>Select the Subject</label>
+	  </div>
+
+	  <br>
+	  <br>
+	  	<!-- <div class="dropdown">
+		  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+		  <span class="caret"></span></button>
+		  <ul class="dropdown-menu">
+		    <li><a href="#">HTML</a></li>
+		    <li><a href="#">CSS</a></li>
+		    <li><a href="#">JavaScript</a></li>
+		  </ul>
+		</div> -->
+
 
         <div class="input-field col s12" >
             <input  name="topic_name" placeholder="Topic" id="topic_name" type="text" value="" >
         </div>
 
 		<div class="input-field col s12">
-            <input name="decription" placeholder="Your topic decription"    id="topic_name" type="text" method="POST" action="/create-topic" value="">
+            <input name="decription" placeholder="Your topic description"    id="topic_name" type="text" method="POST" action="/create-topic" value="">
         </div>
 
-
- 
-           
- 
-
- 
-                
 
          <button class="btn waves-effect waves-light" type="submit" name="action">Add
         <i class="material-icons right">send</i>
         </button>
    
     </form>
+
+<script>
+    $(document).ready(function() {
+    $('select').material_select();
+  });
+</script>
