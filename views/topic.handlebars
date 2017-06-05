@@ -20,7 +20,7 @@
 		        
 		        <a href="" class="breadcrumb">
 					{{#each topic}}
-						{{../subject_name}}</h1>
+						{{this.subject_name}}</h1>
 					{{/each}}
 		        </a>
 
@@ -35,7 +35,10 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12 text-center" id="top-bar">
-		
+		<h4 class="text-left">{{#each topic}}
+				{{this.dataValues.decription}}</h1>
+			{{/each}}
+		</h4>
 
 		<ul>
 		  	{{#each links}}  

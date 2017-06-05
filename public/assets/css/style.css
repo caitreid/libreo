@@ -72,6 +72,10 @@ main {
   float: none;
 }
 
+.text-left{
+  text-align: left;
+}
+
 .banner {
   text-align: center;
   padding-top: 45px;

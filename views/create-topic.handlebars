@@ -1,6 +1,6 @@
 <div class="container">
 <div class="row">
-<p><center><h1>ADD A TOPIC<h1></center></p>
+<p><center><h1>Add a Topic<h1></center></p>
 
 </div>
 <div class="row">
@@ -10,7 +10,7 @@
        <div class="input-field col s12" id="create-topic-dropdown">
        	  
 		    <select>
-		      <option value="" disabled selected>Choose your option</option>
+		      <option value="" disabled selected>Select</option>
 		      <option value="1">Option 1</option>
 		      <option value="2">Option 2</option>
 		      <option value="3">Option 3</option>
@@ -36,9 +36,10 @@
         </div>
 
 		<div class="input-field col s12">
-            <input name="decription" placeholder="Your topic description"    id="topic_name" type="text" method="POST" action="/create-topic" value="">
+            <input name="decription" placeholder="Describe this topic in 2-3 sentences." id="topic_name" type="text" wrap="soft" method="POST" action="/create-topic" value="">
         </div>
 
+        
 
          <button class="btn waves-effect waves-light" type="submit" name="action">Add
         <i class="material-icons right">send</i>

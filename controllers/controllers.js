@@ -265,8 +265,9 @@ router.get("/topic/:id", function(req, res) {
     }).then(function(dbTopic) {
     	console.log(dbTopic[0].dataValues.Links);
     	console.log("-------")
+      console.log(dbTopic)
 
-    	console.log(dbTopic[0].dataValues.Links[1].dataValues)
+    	// console.log(dbTopic[0].dataValues.Links[1].dataValues)
 
     	// console.log(dbTopic[0].dataValues.Links)
     	// console.log(dbTopic[0].Instance.dataValues)
@@ -325,21 +326,30 @@ router.post("/create-topic", function(req, res) {
 
 // ==============  POST LINKS =====================
 router.post("/create-links", function(req, res) {
-  // edited burger create to add in a burger_name
   db.Links.create({
+    include: [db.Topic],
+
     type: req.body.type,
     title: req.body.title,
-    url: req.body.url // double check the name of the column
+    url: req.body.url,
+    TopicId: req.body.TopicId
   })
   // pass the result of our call
   .then(function(dbLinks) {
     // log the result to our terminal/bash window
     console.log(dbLinks);
+    console.log(dbLinks[0])
     // redirect
-    res.redirect("/links");
+    res.redirect("/");
+  })
+  .catch(function (err) {
+    console.log(err)
   });
+
 });
 
+
+// ==============  GET field =====================
 router.get("/field/:id", function(req, res) {
   // replace old function with sequelize function
   db.Subject.findOne({
