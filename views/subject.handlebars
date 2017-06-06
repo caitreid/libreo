@@ -37,7 +37,10 @@
 	
 		  	{{#each topic}}
 		  			{{topic}}
-			    <a href="/topic/{{this.id}}">Topic: {{this.topic_name}}</a>
+		  			<p class="topic-cloud">
+			    <a href="/topic/{{this.id}}">{{this.topic_name}}</a>
+			    </p>
+			    
 			    <br>
 		  	{{/each}}
 
@@ -48,6 +51,8 @@
 	</div>
 </div>
 </main>
+
+
 
 
 
