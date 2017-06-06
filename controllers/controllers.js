@@ -335,7 +335,12 @@ router.post("/create-topic/create", function(req, res) {
     console.log(dbTopic);
     // redirect
     res.redirect("/topics/:id"); // ???? come back to this
-  });
+  })
+//   .use(function (err, req, res, next) {
+//   console.error(err.stack)
+//   res.status(500).send('Something broke!')
+// })
+
 });
 
 
@@ -343,7 +348,7 @@ router.post("/create-topic/create", function(req, res) {
 // =============== GET : CREATE-LINKS =============
 // get route, edited to match sequelize
 router.get("/create-links", function(req, res) {
-  // replace old function with sequelize function
+ 
   db.Topic.findAll({
     // include: [db.Topic],
     order: [
@@ -351,14 +356,13 @@ router.get("/create-links", function(req, res) {
     ]
   })
   .then(function(dbTopic) {
+    // console.log(dbTopic[0].dataValues);
     console.log(dbTopic);
-    console.log("this is happening")
-    // into the main index, updating the page
+    // console.log("this is happening")
+
     var hbsObject = {
         topic: dbTopic,
-        // topic2: dbTopic[0].Links,
-        // subject_name: dbTopic[0].Instance.dataValues,
-        // links: dbTopic[0].dataValues.Links,
+        
       };
     return res.render("create-links", hbsObject);
   });
@@ -381,8 +385,9 @@ router.post("/create-links/create", function(req, res) {
   // pass the result of our call
   .then(function(dbLinks) {
     // log the result to our terminal/bash window
-    console.log(dbLinks);
-    console.log(dbLinks[0]);
+    // console.log(dbLinks);
+    // console.log(dbLinks[0].dataValues);
+    console.log("hello hello")
     // console.log(TopicId)
     // redirect
     res.redirect("/");
