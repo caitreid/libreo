@@ -44,12 +44,14 @@
 		  	{{#each links}}  
 		      <div class="topic-description"> {{this.decription}}</div>
 		      <!-- <p><b>ID: {{this.dataValues.id}}</b></p> -->
-		      <p><b>Type: {{this.dataValues.type}}</b></p>
-		      	<p>Title: {{this.dataValues.title}}</p>
-			    <a>Url: {{this.dataValues.url}} </a>
+		      <div class="link-cloud">
+		      <p class="linktype"><b>{{this.dataValues.type}}</b></p>
+		      	<p class="linktitle"> {{this.dataValues.title}}</p>
+			    <a href="">{{this.dataValues.url}} </a>
 		      <!-- <p>Link: {{this.Links}}</p>
 		      <p>{{this.Topics.TopicId}}</p> -->
-			    
+			  </div> 
+			  <br> 
 		  	{{/each}}
 		</ul>
 
@@ -63,6 +65,11 @@
 	</div>
 </div>
 </main>
+
+
+
+
+
 
 
 
