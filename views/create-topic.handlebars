@@ -8,7 +8,7 @@
 	        <select name="SubjectId" id="SubjectId" required method="POST" action="/create-topic/create" value="" >
 	          <option value="" disabled selected>Select</option>
 	          		{{#each subject}}
-	          <option name="SubjectId" id="SubjectId" value={{this.id}} method="POST" action="/create-topic/create">{{this.subject_name}}</option>
+	          <option name="SubjectId" id="SubjectId" value="{{this.id}}" method="POST" action="/create-topic/create">{{this.subject_name}}</option>
 	          		{{/each}}
 	        </select>
 	      <label>Subject</label>
