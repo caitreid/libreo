@@ -1,7 +1,7 @@
 
 <main>
 	<div class="banner2">
-		<h1>
+		<h1 class="subject-header">
 			{{#each topic}}
 				{{this.topic_name}}
 			{{/each}}
@@ -47,7 +47,7 @@
 		      <div class="link-cloud">
 		      <p class="linktype"><b>{{this.dataValues.type}}</b></p>
 		      	<p class="linktitle"> {{this.dataValues.title}}</p>
-			    <a href="">{{this.dataValues.url}} </a>
+			    <a href="{{this.dataValues.url}}">{{this.dataValues.url}} </a>
 		      <!-- <p>Link: {{this.Links}}</p>
 		      <p>{{this.Topics.TopicId}}</p> -->
 			  </div> 
