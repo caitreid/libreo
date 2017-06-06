@@ -124,6 +124,10 @@ main {
   font-family: 'Roboto Condensed', sans-serif;
 }
 
+.footer-copyright {
+  background-color: rgba(81, 81, 81, 0.08);
+}
+
 .banner2 {
   text-align: center;
   padding-top: 45px;
