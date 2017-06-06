@@ -3,12 +3,12 @@
 <p><center><h1>Add a Topic<h1></center></p>
 </div>
 <div class="row">
-<form class="col s12" id="topic" method="POST" action="/create-topic/create" class="task">
+<form class="col s12" id="topic" method="POST" type="post" action="/create-topic/create" class="task">
 		<div class="input-field col s12" id="create-topic-dropdown">
-	        <select name="SubjectId" required method="POST" action="/create-topic/create" value="" >
+	        <select name="SubjectId" id="SubjectId" required method="POST" action="/create-topic/create" value="" >
 	          <option value="" disabled selected>Select</option>
 	          		{{#each subject}}
-	          <option name="SubjectId" id="SubjectId" method="POST" action="/create-topic/create" value={{this.id}} >{{this.subject_name}}</option>
+	          <option name="SubjectId" id="SubjectId" value={{this.id}} method="POST" action="/create-topic/create">{{this.subject_name}}</option>
 	          		{{/each}}
 	        </select>
 	      <label>Subject</label>
