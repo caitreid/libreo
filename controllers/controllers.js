@@ -247,15 +247,18 @@ router.get("/topic/:id", function(req, res) {
 	    },
 
 	    include: [db.Links],
+      include: [db.Subject]
 	    // include: [db.Subjects],
 
-        order: [
-      		["id", "ASC"] // what is the exact name here???
-        ]
-    }).then(function(dbTopic) {
-    	console.log(dbTopic[0].dataValues.Links);
+        // order: [
+      		// ["id", "ASC"] // what is the exact name here???
+        // ]
+    })
+
+    .then(function(dbTopic) {
+    	console.log(dbTopic[0].dataValues);
     	console.log("-------")
-      console.log(dbTopic)
+      // console.log(dbTopic)
 
     	// console.log(dbTopic[0].dataValues.Links[1].dataValues)
 
@@ -370,8 +373,6 @@ router.get("/create-links", function(req, res) {
 
 
 
-
-
 // ==============  POST LINKS =====================
 router.post("/create-links/create", function(req, res) {
   db.Links.create({
@@ -387,7 +388,6 @@ router.post("/create-links/create", function(req, res) {
     // log the result to our terminal/bash window
     // console.log(dbLinks);
     // console.log(dbLinks[0].dataValues);
-    console.log("hello hello")
     // console.log(TopicId)
     // redirect
     res.redirect("/");
