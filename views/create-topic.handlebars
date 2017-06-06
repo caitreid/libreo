@@ -1,8 +1,10 @@
 <div class="container">
 <div class="row">
-<p><center><h1>Add a Topic<h1></center></p>
+	<div id="add-div">
+		<p><center><h1 id="add">Add a Topic</h1></center></p>
+	</div>
 </div>
-<div class="row">
+<div class="row" id="sub-form">
 <form class="col s12" id="topic" method="POST" type="post" action="/create-topic/create" class="task">
 		<div class="input-field col s12" id="create-topic-dropdown">
 	        <select name="SubjectId" id="SubjectId" required method="POST" action="/create-topic/create" value="" >
@@ -28,7 +30,7 @@
         </button>
    
     </form>
-
+</div>
 <script>
     $(document).ready(function() {
     $('select').material_select();

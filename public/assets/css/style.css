@@ -99,7 +99,7 @@ main {
   text-align: center;
   padding-top: 45px;
   height: 235px;
-  background: #3a95b1;
+  background: #59c9a5;;
   /*background: linear-gradient( 295deg, #3FA288, #37909A 30%, #247D92 65%, #06637F );*/
 
 }
@@ -130,12 +130,11 @@ main {
 }
 
 
-@media (min-width: 993px) {
-  #title {
-    margin-left: 25px;
-  }
+h5 {
+  font-family: 'Roboto Condensed', sans-serif !important;
+  font-weight: 500;
+  /*font-style: italic;*/
 }
-
 #top-bar {
   margin-top: 28px;
 }
