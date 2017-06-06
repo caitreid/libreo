@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "Mysql4me1$",
+    "password": "",
     "database": "libreo",
     "host": "127.0.0.1",
     "dialect": "mysql"

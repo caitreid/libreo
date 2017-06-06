@@ -201,8 +201,6 @@ router.get("/subject/:id", function(req, res) {
 });
 
 
-
-
 // ============ GET ALL TOPICS ==============
 router.get("/topic", function(req, res) {
   // replace old function with sequelize function
@@ -246,16 +244,19 @@ router.get("/topic/:id", function(req, res) {
 	        id: req.params.id
 	    },
 
-	    include: [db.Links],
+	    include: [db.Links]
+      // include: [db.Subject]
 	    // include: [db.Subjects],
 
-        order: [
-      		["id", "ASC"] // what is the exact name here???
-        ]
-    }).then(function(dbTopic) {
-    	console.log(dbTopic[0].dataValues.Links);
+        // order: [
+      		// ["id", "ASC"] 
+        // ]
+    })
+
+    .then(function(dbTopic) {
+    	console.log(dbTopic[0].dataValues);
     	console.log("-------")
-      console.log(dbTopic)
+      // console.log(dbTopic)
 
     	// console.log(dbTopic[0].dataValues.Links[1].dataValues)
 
@@ -277,21 +278,20 @@ router.get("/topic/:id", function(req, res) {
 
 // ==================POST subjects=========================
 router.post("/create-subject", function(req, res) {
-    // edited burger create to add in a burger_name
-    db.Subject.create({
-        include: [db.Topic],
-        subject_name:req.body.subject_name,
-        field_name: req.body.field_name
-    })
-    // pass the result of our call
-        .then(function(data) {
-            // log the result to our terminal/bash window
-            console.log(data);
-            console.log(data);
+  db.Subject.create({
+      include: [db.Topic],
+      subject_name:req.body.subject_name,
+      field_name: req.body.field_name
+  })
+  // pass the result of our call
+    .then(function(data) {
+      // log the result to our terminal/bash window
+      console.log(data);
+      console.log(data);
 
-            // redirect
-            res.redirect("/");
-        });
+      // redirect
+      res.redirect("/");
+    });
 });
 
 
@@ -312,9 +312,7 @@ router.get("/create-topic", function(req, res) {
     // into the main index, updating the page
     var hbsObject = {
         subject: dbSubject,
-        // topic2: dbTopic[0].Links,
-        // subject_name: dbTopic[0].Instance.dataValues,
-        // links: dbTopic[0].dataValues.Links,
+        id: dbSubject.id
       };
     return res.render("create-topic", hbsObject);
   });
@@ -332,14 +330,9 @@ router.post("/create-topic/create", function(req, res) {
   // pass the result of our call
   .then(function(dbTopic) {
     // log the result to our terminal/bash window
-    console.log(dbTopic);
-    // redirect
-    res.redirect("/topics/:id"); // ???? come back to this
+    // console.log(dbTopic);
+    res.redirect("/"); // ???? come back to this
   })
-//   .use(function (err, req, res, next) {
-//   console.error(err.stack)
-//   res.status(500).send('Something broke!')
-// })
 
 });
 
@@ -370,8 +363,6 @@ router.get("/create-links", function(req, res) {
 
 
 
-
-
 // ==============  POST LINKS =====================
 router.post("/create-links/create", function(req, res) {
   db.Links.create({
@@ -386,7 +377,6 @@ router.post("/create-links/create", function(req, res) {
   .then(function(dbLinks) {
     // log the result to our terminal/bash window
     // console.log(dbLinks);
-    // console.log(dbLinks[0].dataValues)
     // console.log(TopicId)
     // redirect
     res.redirect("/");

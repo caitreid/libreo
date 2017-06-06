@@ -1,53 +1,26 @@
 <div class="container">
 <div class="row">
 <p><center><h1>Add a Topic<h1></center></p>
-
 </div>
 <div class="row">
-
-<form class="col s12" id="topic" method="POST" action="/create-topic" class="task">
+<form class="col s12" id="topic" method="POST" type="post" action="/create-topic/create" class="task">
 		<div class="input-field col s12" id="create-topic-dropdown">
-			<!-- create-topic OR create-topic/create ? -->
-	        <select name="type" required method="POST" action="/create-topic" value="" >
+	        <select name="SubjectId" id="SubjectId" required method="POST" action="/create-topic/create" value="" >
 	          <option value="" disabled selected>Select</option>
-	          {{#each subject}}
-	          <option value="Article" >{{this.subject_name}}</option>
-	          {{/each}}
+	          		{{#each subject}}
+	          <option name="SubjectId" id="SubjectId" value="{{this.id}}" method="POST" action="/create-topic/create">{{this.subject_name}}</option>
+	          		{{/each}}
 	        </select>
 	      <label>Subject</label>
 	    </div>
 
 
-       <!-- <div class="input-field col s12" id="create-topic-dropdown">
-       	  
-		    <select>
-		      <option value="" disabled selected>Select</option>
-		      <option value="1">Option 1</option>
-		      <option value="2">Option 2</option>
-		      <option value="3">Option 3</option>
-		    </select>
-		    <label>Select the Subject</label>
-	  </div> -->
-
-	  <br>
-	  <br>
-	  	<!-- <div class="dropdown">
-		  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-		  <span class="caret"></span></button>
-		  <ul class="dropdown-menu">
-		    <li><a href="#">HTML</a></li>
-		    <li><a href="#">CSS</a></li>
-		    <li><a href="#">JavaScript</a></li>
-		  </ul>
-		</div> -->
-
-
         <div class="input-field col s12" >
-            <input  name="topic_name" placeholder="Topic" id="topic_name" type="text" value="" >
+            <input  name="topic_name" placeholder="Topic" id="topic_name" type="text" method="POST" action="/create-topic/create" value="" >
         </div>
 
 		<div class="input-field col s12">
-            <input name="decription" placeholder="Describe this topic in 2-3 sentences." id="topic_name" type="text" wrap="soft" method="POST" action="/create-topic" value="">
+            <input name="decription" placeholder="Describe this topic in 2-3 sentences." id="topic_name" type="text" wrap="soft" method="POST" action="/create-topic/create" value="">
         </div>
 
          <button class="btn waves-effect waves-light" type="submit" name="action">Add
@@ -61,3 +34,24 @@
     $('select').material_select();
   });
 </script>
+
+       <!-- <div class="input-field col s12" id="create-topic-dropdown">
+       	  
+		    <select>
+		      <option value="" disabled selected>Select</option>
+		      <option value="1">Option 1</option>
+		      <option value="2">Option 2</option>
+		      <option value="3">Option 3</option>
+		    </select>
+		    <label>Select the Subject</label>
+	  </div> -->
+
+	  	<!-- <div class="dropdown">
+		  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+		  <span class="caret"></span></button>
+		  <ul class="dropdown-menu">
+		    <li><a href="#">HTML</a></li>
+		    <li><a href="#">CSS</a></li>
+		    <li><a href="#">JavaScript</a></li>
+		  </ul>
+		</div> -->

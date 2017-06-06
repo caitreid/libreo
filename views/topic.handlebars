@@ -14,13 +14,13 @@
 		        <a href="/" 
 		        class="breadcrumb">
 		        	{{#each topic}}
-						{{this.field_name}}
+						{{this.dataValues.field_name}}
 					{{/each}}
 		        </a>
 		        
 		        <a href="" class="breadcrumb">
 					{{#each topic}}
-						{{this.subject_name}}</h1>
+						{{this.dataValues.subject_name}}</h1>
 					{{/each}}
 		        </a>
 
@@ -34,7 +34,7 @@
 		</nav>
 <div class="container">
 	<div class="row">
-		<div class="col-xs-12 text-center" id="top-bar">
+		<div class="col-xs-12" id="top-bar">
 		<h4 class="text-left">{{#each topic}}
 				{{this.dataValues.decription}}</h1>
 			{{/each}}

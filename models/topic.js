@@ -26,7 +26,7 @@ module.exports = function(sequelize, DataTypes) {
           associate: function(models) {
             Topic.belongsTo(models.Subject, {
               foreignKey: {
-                allowNull: true
+                allowNull: false 
               }
             }); //ends belongsTo
           }
