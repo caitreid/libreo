@@ -181,3 +181,19 @@ h1 {
   color: lightgrey;
   text-align: center;
 }
+
+.topic-cloud{
+
+  font-size: 25px;
+}
+.link-cloud{
+  font-size: 20px;
+}
+
+.linktype{
+  font-size: 20px;
+}
+.linktitle{
+  font-size: 20px;
+  text-decoration: underline; 
+}
