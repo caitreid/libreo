@@ -10,8 +10,18 @@ body {
 }
 
 nav {
-  background-color: #56C7A5 !important;
+  background-color: #56C7A5;
   font-family: "Roboto", sans-serif; 
+}
+
+@media only screen and (min-width : 992px){
+  #title-logo{
+    padding-left: 25px;
+  }
+}
+
+#top-nav {
+  background-color: #68CDAD;
 }
 
 a {
@@ -52,6 +62,11 @@ a {
   font-size: 20px;
   color: grey;
 }
+
+.subject-header {
+  color:#fff;
+}
+
 
 @media only screen and (min-width : 768px){
   .signup-div {
@@ -114,7 +129,7 @@ main {
   /*box-shadow: none;*/
   height: 40px;
   line-height: 44px;
-  background-color: #d39093;
+  background-color: #51B796;
   padding-left: 25px;
 }
 
