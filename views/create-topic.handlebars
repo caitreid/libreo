@@ -7,7 +7,8 @@
 
 <form class="col s12" id="topic" method="POST" action="/create-topic" class="task">
 		<div class="input-field col s12" id="create-topic-dropdown">
-	        <select name="type" required method="POST" action="/create-links" value="" >
+			<!-- create-topic OR create-topic/create ? -->
+	        <select name="type" required method="POST" action="/create-topic" value="" >
 	          <option value="" disabled selected>Select</option>
 	          {{#each subject}}
 	          <option value="Article" >{{this.subject_name}}</option>

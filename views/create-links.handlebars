@@ -7,35 +7,23 @@
 
 </div>
 <div class="row">
-<form class="col s12" id="links" method="POST" action="/create-links" class="task">
+<form class="col s12" id="links" method="POST" action="/create-links/create" class="task">
 
+    <!-- drop down to indicate the topic -->
     <div class="input-field col s12" id="create-topic-dropdown">
-        <select name="type" required method="POST" action="/create-links" value="" >
+        <select name="TopicId" required method="POST" action="/create-links/create" value="" >
+          
           <option value="" disabled selected>Select</option>
           {{#each topic}}
-          <option value="Article" >{{this.topic_name}}</option>
+          <option name="TopicId" value={{this.dataValues.id}}>{{this.topic_name}}</option>
           {{/each}}
         </select>
       <label>Topic</label>
     </div>
-            
-    <!-- <div class="input-field col s12" id="create-topic-dropdown"> -->
-        
-        <!-- <select>
-          <option value="" disabled selected>Choose your option</option> -->
-            <!-- {{#each subject}} -->
-                <!-- <option value="" method="POST" action="/create-links">test 12 {{this.subject_name}}</option> -->
-            <!-- {{/each}} -->
 
-          <!-- <option value="1">Option 1</option>
-          <option value="2">Option 2</option>
-          <option value="3">Option 3</option> -->
-        <!-- </select> -->
-    <!-- <label>Select the Topic</label> -->
-  <!-- </div> -->
-
+  <!--drop down to declare the media type -->
   <div class="input-field col s12" id="create-topic-dropdown" >
-        <select name="type" required method="POST" action="/create-links" value="" >
+        <select name="type" required method="POST" action="/create-links/create" value="" >
           <option value="" disabled selected>Select</option>
           <option value="Article" >Article</option>
           <option value="Video">Video</option>
@@ -49,18 +37,16 @@
     </div> -->
 
     <div class="input-field col s12" >
-        <input  name="title" placeholder="Title" id="title" type="text" method="POST" action="/create-links" value="" >
+        <input  name="title" placeholder="Title" id="title" type="text" method="POST" action="/create-links/create" value="" >
     </div>
 
     <div class="input-field col s12" >
-        <input  name="url" placeholder="URL" id="url" type="text" method="POST" action="/create-links" value="" >
+        <input  name="url" placeholder="URL" id="url" type="text" method="POST" action="/create-links/create" value="" >
     </div>
 
     <!-- <div class="input-field col s12">
         <input name="TopicId" placeholder="TopicID" id="TopicId" type="text" method="POST" action="/create-links" value="">
         </div> -->
-
-     
 
 
      <button class="btn waves-effect waves-light" type="submit" name="action">Add
