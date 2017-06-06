@@ -10,9 +10,9 @@
     <div class="input-field col s12" id="create-topic-dropdown">
         <select name="TopicId" required method="POST" action="/create-links/create" value="" >
           <option value="" disabled selected>Select</option>
-          {{#each topic}}
-          <option name="TopicId" value={{this.dataValues.id}}>{{this.topic_name}}</option>
-          {{/each}}
+            {{#each topic}}
+          <option name="TopicId" value={{this.dataValues.id}}>    {{this.topic_name}}</option>
+            {{/each}}
         </select>
       <label>Topic</label>
     </div>
@@ -28,10 +28,6 @@
     <label>Type of Media</label>
   </div>
 
-    <!-- <div class="input-field col s12" >
-        <input  name="type" placeholder="Your link type" id="type" type="text" method="POST" action="/create-links" value="" >
-    </div> -->
-
     <div class="input-field col s12" >
         <input  name="title" placeholder="Title" id="title" type="text" method="POST" action="/create-links/create" value="" >
     </div>
@@ -39,9 +35,7 @@
     <div class="input-field col s12" >
         <input  name="url" placeholder="URL" id="url" type="text" method="POST" action="/create-links/create" value="" >
     </div>
-    <!-- <div class="input-field col s12">
-        <input name="TopicId" placeholder="TopicID" id="TopicId" type="text" method="POST" action="/create-links" value="">
-        </div> -->
+
      <button class="btn waves-effect waves-light" type="submit" name="action">Add
     <i class="material-icons right">send</i>
     </button>
@@ -51,3 +45,7 @@
     $('select').material_select();
   });
 </script>
+
+
+
+
