@@ -386,8 +386,7 @@ router.post("/create-links/create", function(req, res) {
   .then(function(dbLinks) {
     // log the result to our terminal/bash window
     // console.log(dbLinks);
-    // console.log(dbLinks[0].dataValues);
-    console.log("hello hello")
+    // console.log(dbLinks[0].dataValues)
     // console.log(TopicId)
     // redirect
     res.redirect("/");
