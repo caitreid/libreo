@@ -105,9 +105,23 @@ main {
   text-align: center;
   padding-top: 45px;
   height: 335px;
-  background: none;
-  /*background: linear-gradient( 295deg, #3FA288, #37909A 30%, #247D92 65%, #06637F );*/
+  background-color:#68cdad;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#68cdad+13,316e5a+94 */
+}
 
+#main-text-header {
+  font-style: bold;
+  color: white;
+  font-family: 'Roboto Slab', serif;
+}
+
+.sub-text {
+  width: 50%; 
+  margin: 0 auto;
+}
+
+#sub-font {
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 .banner2 {
