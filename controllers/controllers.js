@@ -1,4 +1,4 @@
-// =====================
+// ======================================================
 
 var express = require("express");
 var passport = require("../config/passport");
@@ -9,10 +9,13 @@ var request = require("request")
 // Requiring our custom middleware for checking if a user is logged in
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 
-// ROUTES //////////////////////////////////////
 
 
-// ==============  SIGN UP ================================
+//////////////////////// ROUTES /////////////////////////////////
+
+
+// ==================  Sign Up =============================
+
 router.get("/signup", function(req, res) {
   // send us to the next get function instead.
   res.render("signup");
@@ -21,6 +24,7 @@ router.get("/signup", function(req, res) {
 
 
 // ===========  Login page =================================
+
 router.get("/login", function(req, res) {
     res.render("login", "");
     if (req.user){
@@ -33,7 +37,7 @@ router.get("/members", function(req, res) {
 });
 
 
- // =====Route for logging user out============================
+ // ============ Logging user out============================
 
   router.get("/logout", function(req, res) {
     req.logout();
@@ -77,14 +81,13 @@ router.get("/members", function(req, res) {
   });
 
  router.post("/login", passport.authenticate("local"), function(req, res) {
-    // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
-    // So we're sending the user back the route to the members page because the redirect will happen on the front end
-    // They won't get this or even be able to access this page if they aren't authed
+    
     res.redirect("/members");
   });
  
 
-// ==========  render Create Subject ===========
+// ========== Render Create Subject ========================================
+
 router.get("/create-subject", function(req, res) {
   // send us to the next get function instead.
   res.render("create-subject");
@@ -92,32 +95,17 @@ router.get("/create-subject", function(req, res) {
 
 
 
-//============ GET home page ===============
+//=================== GET Home page ===================================
 
 router.get("/", function(req, res) {
     db.Subject.findAll({
-     //    group: {
-    		
-    	// 	"field_name"
-    	// }
-        // order: [
-        //     ["id", "ASC"] 
-        // ]
+     
     })
-    // .then(function(dbBiz){
-    // 	var bizObj = {
-    // 		biz: dbBiz
-    // 	}
-    // 	return res.render(bizObj)
-    // }),
-    // db.Subject.findAll({
-    // 	where: {
-    // 		field_name : 'Technology'
-    // 	}
-    // })
+    
     .then(function(dbSubject) {
-    	console.log(dbSubject);
-    	console.log("-------")
+
+    	// console.log(dbSubject);
+    	// console.log("-------")
         
         var hbsObject = {
             subject: dbSubject       
@@ -126,35 +114,20 @@ router.get("/", function(req, res) {
         return res.render("index", hbsObject);
     })
 
-    // db.Subject.findAll({
-    // 	where: {
-    // 		field_name : 'Technology'
-    // 	}
-    // }).then(function(dbTech) {
-
-    // 	// console.log(dbTech.dataValues.subject_name);
-    // 	// console.log("-------")
-        
-    //     var hbsObject = {
-    //         tech: dbTech
-    //     };
-        
-    //     return res.render("index", hbsObject);
-
-    // });
+    
 });
 
-// =============  SUBJECT ================
+// ======================  GET SUBJECT =================================
 
 
 router.get("/subject", function(req, res) {
-  // replace old function with sequelize function
+
   db.Subject.findAll({
     include: [db.Topic],
-     // ???
+ 
     // Here we specify we want to return our subjects in ordered by ascending subject_name
     order: [
-      ["subject_name", "ASC"] // what is the exact name here???
+      ["subject_name", "ASC"] 
     ]
   })
   // use promise method to pass the subjects...
@@ -172,17 +145,19 @@ router.get("/subject", function(req, res) {
 
 
 
-// =============== GET single subject ==============
+// =============== GET Single subject ==============
+
+
 router.get("/subject/:id", function(req, res) {
   // replace old function with sequelize function
   db.Subject.findAll({
   	where: {
         id: req.params.id
       },
-    include: [db.Topic], // ???
+    include: [db.Topic], 
     // Here we specify we want to return our subjects in ordered by ascending subject_name
     order: [
-      ["id", "ASC"] // what is the exact name here???
+      ["id", "ASC"] 
     ]
   })
   // use promise method to pass the subjects...
@@ -191,9 +166,9 @@ router.get("/subject/:id", function(req, res) {
     // into the main index, updating the page
     var testing = {
       subject: dbSubject,
-      // subject_name: dbSubject[0],
+     
       topic: dbSubject[0].Topics,
-      // test: 'HELLO'
+      
     };
   	
     return res.render("subject", testing);
@@ -201,15 +176,16 @@ router.get("/subject/:id", function(req, res) {
 });
 
 
-// ============ GET ALL TOPICS ==============
+// ============ GET ALL TOPICS ================================
+
 router.get("/topic", function(req, res) {
-  // replace old function with sequelize function
+ 
   db.Topic.findAll({
-    include: [db.Links], // ???
-    // include: [db.Links.TopicId],
-    // Here we specify we want to return our subjects in ordered by ascending subject_name
+    include: [db.Links], 
+    
+    // Here we specify we want to return our topics in ordered by ascending topic_name
     order: [
-      ["topic_name", "ASC"] // what is the exact name here???
+      ["topic_name", "ASC"] 
     ]
   })
   // use promise method to pass the subjects...
@@ -219,10 +195,10 @@ router.get("/topic", function(req, res) {
     var hbsObject = {
       topic: dbTopic
     };
-    console.log(hbsObject);
+    // console.log(hbsObject);
 
-    console.log("------")
-    console.log(db.Links.TopicId);
+    // console.log("------")
+    // console.log(db.Links.TopicId);
 
 
     return res.render('topic', hbsObject);
@@ -237,7 +213,9 @@ router.get("/topic", function(req, res) {
 
 
 
-//============ FIND ONE TOPIC ================
+//============ FIND ONE TOPIC ==============================
+
+
 router.get("/topic/:id", function(req, res) {
     db.Topic.findAll({
 	    where: {
@@ -245,17 +223,12 @@ router.get("/topic/:id", function(req, res) {
 	    },
 
 	    include: [db.Links]
-      // include: [db.Subject]
-	    // include: [db.Subjects],
-
-        // order: [
-      		// ["id", "ASC"] 
-        // ]
+      
     })
 
     .then(function(dbTopic) {
-    	console.log(dbTopic[0].dataValues);
-    	console.log("-------")
+    	// console.log(dbTopic[0].dataValues);
+    	// console.log("-------")
       // console.log(dbTopic)
 
     	// console.log(dbTopic[0].dataValues.Links[1].dataValues)
@@ -266,7 +239,7 @@ router.get("/topic/:id", function(req, res) {
 	    var hbsObject = {
 	      topic: dbTopic,
 	      topic2: dbTopic[0].Links,
-	      // subject_name: dbTopic[0].Instance.dataValues,
+	     
 	      links: dbTopic[0].dataValues.Links,
 	    };
       	return res.render('topic', hbsObject);
@@ -276,7 +249,9 @@ router.get("/topic/:id", function(req, res) {
 
 
 
-// ==================POST subjects=========================
+// ==================POST Subjects=========================
+
+
 router.post("/create-subject", function(req, res) {
   db.Subject.create({
       include: [db.Topic],
@@ -285,22 +260,22 @@ router.post("/create-subject", function(req, res) {
   })
   // pass the result of our call
     .then(function(data) {
-      // log the result to our terminal/bash window
-      console.log(data);
-      console.log(data);
-
+    
+      // console.log(data);
+    
       // redirect
       res.redirect("/");
     });
 });
 
 
-// =============== GET : CREATE-TOPIC =============
-// get route, edited to match sequelize
+// =============== GET : CREATE-TOPIC =======================
+
+
 router.get("/create-topic", function(req, res) {
   // replace old function with sequelize function
   db.Subject.findAll({
-    // include: [db.Topic],
+   
     order: [
       ["subject_name", "DESC"]
     ]
@@ -319,9 +294,10 @@ router.get("/create-topic", function(req, res) {
 });
 
 
-// ==============  POST TOPIC =====================
+// ==============  POST TOPIC ==============================
+
 router.post("/create-topic/create", function(req, res) {
-  // edited burger create to add in a burger_name
+ 
   db.Topic.create({
     include: [db.Links],
     topic_name: req.body.topic_name,
@@ -329,17 +305,18 @@ router.post("/create-topic/create", function(req, res) {
   })
   // pass the result of our call
   .then(function(dbTopic) {
-    // log the result to our terminal/bash window
+  
     // console.log(dbTopic);
-    res.redirect("/"); // ???? come back to this
+    res.redirect("/"); 
   })
 
 });
 
 
 
-// =============== GET : CREATE-LINKS =============
-// get route, edited to match sequelize
+// =============== GET : CREATE-LINKS ====================
+
+
 router.get("/create-links", function(req, res) {
  
   db.Topic.findAll({
@@ -349,7 +326,7 @@ router.get("/create-links", function(req, res) {
     ]
   })
   .then(function(dbTopic) {
-    // console.log(dbTopic[0].dataValues);
+    
     console.log(dbTopic);
     // console.log("this is happening")
 
@@ -363,7 +340,8 @@ router.get("/create-links", function(req, res) {
 
 
 
-// ==============  POST LINKS =====================
+// ==============  POST LINKS ==============================
+
 router.post("/create-links/create", function(req, res) {
   db.Links.create({
     include: [db.Topic],
@@ -375,9 +353,10 @@ router.post("/create-links/create", function(req, res) {
   })
   // pass the result of our call
   .then(function(dbLinks) {
-    // log the result to our terminal/bash window
+
     // console.log(dbLinks);
     // console.log(TopicId)
+
     // redirect
     res.redirect("/");
   })
@@ -387,7 +366,8 @@ router.post("/create-links/create", function(req, res) {
 });
 
 
-// ==============  GET field =====================
+// ==============  GET Field ============================
+
 router.get("/field/:id", function(req, res) {
   // replace old function with sequelize function
   db.Subject.findOne({
@@ -397,7 +377,7 @@ router.get("/field/:id", function(req, res) {
     include: [db.Topic], 
 
     order: [
-      ["subject_name", "ASC"] // what is the exact name here???
+      ["subject_name", "ASC"] 
     ]
 
   })
@@ -414,64 +394,4 @@ router.get("/field/:id", function(req, res) {
 
 module.exports = router;
 
-// EDIT / UPDATE
 
-// // put route to devour a burger
-// router.put("/burgers/update", function(req, res) {
-//   // If we are given a customer, create the customer and give them this devoured burger
-//   if (req.body.customer) {
-//     db.Customer.create({
-//       customer: req.body.customer,
-//       BurgerId: req.body.burger_id
-//     })
-//     .then(function(dbCustomer) {
-//       return db.Burger.update({
-//         devoured: true
-//       }, {
-//         where: {
-//           id: req.body.burger_id
-//         }
-//       });
-//     })
-//     .then(function(dbBurger) {
-//       res.redirect("/");
-//     });
-//   }
-//   // If we aren't given a customer, just update the burger to be devoured
-//   else {
-//     db.Burger.update({
-//       devoured: true
-//     }, {
-//       where: {
-//         id: req.body.burger_id
-//       }
-//     })
-//     .then(function(dbBurger) {
-//       res.redirect("/");
-//     });
-//   }
-// });
-
-
-
-
-
-// // TOPICS
-// router.get("/links", function(req, res) {
-//   // replace old function with sequelize function
-//   db.Links.findAll({
-//     // include: [db.Links], // ???
-//     // Here we specify we want to return our subjects in ordered by ascending subject_name
-//     order: [
-//       ["id", "ASC"] // 
-//     ]
-//   })
-//   // use promise method to pass the subjects...
-//   .then(function(dbSubject) {
-//     // into the main index, updating the page
-//     var hbsObject = {
-//       subject: dbSubject
-//     };
-//     return res.render("index", hbsObject);
-//   });
-// });
