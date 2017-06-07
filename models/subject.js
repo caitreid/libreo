@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
   	},
     subject_name: {
       type: DataTypes.STRING,
-      // If a customer is to be created, they must have a name
+     
       allowNull: false
     }
   },
@@ -25,14 +25,3 @@ module.exports = function(sequelize, DataTypes) {
 
 
 
-// {
-//       classMethods: {
-//         // Associating Subjects with Topics
-//           associate: function(models) {
-//             // When an Subject is deleted, also delete any associated Topics
-//             Subject.hasMany(models.Topic, {
-//               onDelete: "cascade"
-//             });
-//           }
-//       }
-//     }
