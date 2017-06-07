@@ -48,10 +48,10 @@ app.use("/welcome",routes);
 var port = process.env.PORT || 3000;
 db.sequelize.sync().then(function() {
   app.listen(port);
-  console.log("app is listening on port: " + port)
+  console.log("app is **LIVE** listening on port: " + port)
 });
 
-// require("./routes/create-link-routes.js")(app);
+
 
 
 
