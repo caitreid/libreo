@@ -1,32 +1,22 @@
-<<<<<<< HEAD
-// ======================================================
-=======
-// ========================================================
->>>>>>> master
+//====================================================================
 
 var express = require("express");
 var passport = require("../config/passport");
 var router = express.Router();
-// grabbing our models
+
 var db = require("../models");
 var request = require("request")
 // Requiring our custom middleware for checking if a user is logged in
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 
-<<<<<<< HEAD
 
 
-//////////////////////// ROUTES /////////////////////////////////
-
-
-// ==================  Sign Up =============================
-=======
 
 //////////////////////  ROUTES /////////////////////////////////////
 
 
 // ==============  SIGN UP ================================
->>>>>>> master
+
 
 router.get("/signup", function(req, res) {
   // send us to the next get function instead.
@@ -34,13 +24,10 @@ router.get("/signup", function(req, res) {
 });
 
 
-// ===========  LOG IN  ====================================
 
-<<<<<<< HEAD
 // ===========  Login page =================================
 
-=======
->>>>>>> master
+
 router.get("/login", function(req, res) {
     res.render("login", "");
     if (req.user){
@@ -53,11 +40,9 @@ router.get("/members", function(req, res) {
 });
 
 
-<<<<<<< HEAD
- // ============ Logging user out============================
-=======
+
  // ==================LOG OUT ===============================
->>>>>>> master
+
 
   router.get("/logout", function(req, res) {
     req.logout();
@@ -109,7 +94,7 @@ router.get("/members", function(req, res) {
   });
  
 
-<<<<<<< HEAD
+
 // ========== Render Create Subject ========================================
 
 router.get("/create-subject", function(req, res) {
@@ -126,7 +111,7 @@ router.get("/", function(req, res) {
      
     })
     
-=======
+
 
 //============ GET Home Page ======================
 
@@ -135,7 +120,7 @@ router.get("/", function(req, res) {
     
     })
   
->>>>>>> master
+
     .then(function(dbSubject) {
 
     	// console.log(dbSubject);
@@ -149,7 +134,7 @@ router.get("/", function(req, res) {
     })
 
     
-<<<<<<< HEAD
+
 });
 
 // ======================  GET SUBJECT =================================
@@ -160,17 +145,17 @@ router.get("/subject", function(req, res) {
   db.Subject.findAll({
     include: [db.Topic],
  
-=======
+
 });
 
-// ========== Create Subject Render ===========
+// ========== Create Subject Render ====================================
 
 router.get("/create-subject", function(req, res) {
   // send us to the next get function instead.
   res.render("create-subject");
 });
 
-// =============  SUBJECT Get   ==========================
+// ==========================  SUBJECT Get   ==========================
 
 
 router.get("/subject", function(req, res) {
@@ -199,12 +184,9 @@ router.get("/subject", function(req, res) {
 
 
 
-<<<<<<< HEAD
-// =============== GET Single subject ==============
 
-=======
 // =============== GET single subject ========================
->>>>>>> master
+
 
 router.get("/subject/:id", function(req, res) {
   // replace old function with sequelize function
@@ -235,11 +217,9 @@ router.get("/subject/:id", function(req, res) {
 });
 
 
-<<<<<<< HEAD
-// ============ GET ALL TOPICS ================================
-=======
-// ============ GET ALL TOPICS =============================
->>>>>>> master
+
+// ====================== GET ALL TOPICS =============================
+
 
 router.get("/topic", function(req, res) {
  
@@ -276,12 +256,9 @@ router.get("/topic", function(req, res) {
 
 
 
-<<<<<<< HEAD
-//============ FIND ONE TOPIC ==============================
 
-=======
 //============ GET ONE TOPIC ============================
->>>>>>> master
+
 
 router.get("/topic/:id", function(req, res) {
     db.Topic.findAll({
@@ -294,14 +271,13 @@ router.get("/topic/:id", function(req, res) {
     })
 
     .then(function(dbTopic) {
-<<<<<<< HEAD
+
     	// console.log(dbTopic[0].dataValues);
     	// console.log("-------")
       // console.log(dbTopic)
 
     	// console.log(dbTopic[0].dataValues.Links[1].dataValues)
-=======
->>>>>>> master
+
 
     	// console.log(dbTopic[0].dataValues);
     	// console.log("-------")
@@ -331,27 +307,19 @@ router.post("/create-subject", function(req, res) {
   })
   // pass the result of our call
     .then(function(data) {
-<<<<<<< HEAD
-    
-      // console.log(data);
-    
-=======
-      // log the result to our terminal/bash window
-      // console.log(data);
-      
 
->>>>>>> master
+    
+      // console.log(data)
+
       // redirect
       res.redirect("/");
     });
 });
 
 
-<<<<<<< HEAD
-// =============== GET : CREATE-TOPIC =======================
-=======
+
 // =============== GET :CREATE-TOPIC =============
->>>>>>> master
+
 
 
 router.get("/create-topic", function(req, res) {
@@ -375,12 +343,10 @@ router.get("/create-topic", function(req, res) {
 });
 
 
-<<<<<<< HEAD
-// ==============  POST TOPIC ==============================
-=======
+
 // ==============  POST TOPIC =====================
 
->>>>>>> master
+
 
 router.post("/create-topic/create", function(req, res) {
  
@@ -391,11 +357,9 @@ router.post("/create-topic/create", function(req, res) {
   })
   // pass the result of our call
   .then(function(dbTopic) {
-<<<<<<< HEAD
-  
-=======
+
     
->>>>>>> master
+
     // console.log(dbTopic);
     res.redirect("/"); 
   })
@@ -404,9 +368,7 @@ router.post("/create-topic/create", function(req, res) {
 
 
 
-<<<<<<< HEAD
-// =============== GET : CREATE-LINKS ====================
-=======
+
 // =============== GET : CREATE-LINKS ================
 >>>>>>> master
 
@@ -434,12 +396,10 @@ router.get("/create-links", function(req, res) {
 
 
 
-<<<<<<< HEAD
-// ==============  POST LINKS ==============================
-=======
+
 // ==============  POST LINKS =====================
 
->>>>>>> master
+
 
 router.post("/create-links/create", function(req, res) {
   db.Links.create({
@@ -465,13 +425,11 @@ router.post("/create-links/create", function(req, res) {
 });
 
 
-<<<<<<< HEAD
-// ==============  GET Field ============================
-=======
-// ==============  GET Field =====================
+
+// ==============  GET Field ===============================
 
 
->>>>>>> master
+
 
 router.get("/field/:id", function(req, res) {
   // replace old function with sequelize function
@@ -500,11 +458,3 @@ router.get("/field/:id", function(req, res) {
 module.exports = router;
 
 
-<<<<<<< HEAD
-=======
-
-
-
-
-
->>>>>>> master
