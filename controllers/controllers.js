@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-// ======================================================
-=======
 // ========================================================
->>>>>>> master
 
 var express = require("express");
 var passport = require("../config/passport");
@@ -13,20 +9,11 @@ var request = require("request")
 // Requiring our custom middleware for checking if a user is logged in
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 
-<<<<<<< HEAD
-
-
-//////////////////////// ROUTES /////////////////////////////////
-
-
-// ==================  Sign Up =============================
-=======
 
 //////////////////////  ROUTES /////////////////////////////////////
 
 
 // ==============  SIGN UP ================================
->>>>>>> master
 
 router.get("/signup", function(req, res) {
   // send us to the next get function instead.
@@ -36,11 +23,6 @@ router.get("/signup", function(req, res) {
 
 // ===========  LOG IN  ====================================
 
-<<<<<<< HEAD
-// ===========  Login page =================================
-
-=======
->>>>>>> master
 router.get("/login", function(req, res) {
     res.render("login", "");
     if (req.user){
@@ -53,11 +35,7 @@ router.get("/members", function(req, res) {
 });
 
 
-<<<<<<< HEAD
- // ============ Logging user out============================
-=======
  // ==================LOG OUT ===============================
->>>>>>> master
 
   router.get("/logout", function(req, res) {
     req.logout();
@@ -109,24 +87,6 @@ router.get("/members", function(req, res) {
   });
  
 
-<<<<<<< HEAD
-// ========== Render Create Subject ========================================
-
-router.get("/create-subject", function(req, res) {
-  // send us to the next get function instead.
-  res.render("create-subject");
-});
-
-
-
-//=================== GET Home page ===================================
-
-router.get("/", function(req, res) {
-    db.Subject.findAll({
-     
-    })
-    
-=======
 
 //============ GET Home Page ======================
 
@@ -135,11 +95,9 @@ router.get("/", function(req, res) {
     
     })
   
->>>>>>> master
     .then(function(dbSubject) {
-
-    	// console.log(dbSubject);
-    	// console.log("-------")
+    	console.log(dbSubject);
+    	console.log("-------")
         
         var hbsObject = {
             subject: dbSubject       
@@ -149,18 +107,6 @@ router.get("/", function(req, res) {
     })
 
     
-<<<<<<< HEAD
-});
-
-// ======================  GET SUBJECT =================================
-
-
-router.get("/subject", function(req, res) {
-
-  db.Subject.findAll({
-    include: [db.Topic],
- 
-=======
 });
 
 // ========== Create Subject Render ===========
@@ -178,7 +124,6 @@ router.get("/subject", function(req, res) {
   db.Subject.findAll({
     include: [db.Topic],
     
->>>>>>> master
     // Here we specify we want to return our subjects in ordered by ascending subject_name
     order: [
       ["subject_name", "ASC"] 
@@ -199,12 +144,7 @@ router.get("/subject", function(req, res) {
 
 
 
-<<<<<<< HEAD
-// =============== GET Single subject ==============
-
-=======
 // =============== GET single subject ========================
->>>>>>> master
 
 router.get("/subject/:id", function(req, res) {
   // replace old function with sequelize function
@@ -235,14 +175,10 @@ router.get("/subject/:id", function(req, res) {
 });
 
 
-<<<<<<< HEAD
-// ============ GET ALL TOPICS ================================
-=======
 // ============ GET ALL TOPICS =============================
->>>>>>> master
 
 router.get("/topic", function(req, res) {
- 
+  // replace old function with sequelize function
   db.Topic.findAll({
     include: [db.Links], 
     
@@ -276,12 +212,7 @@ router.get("/topic", function(req, res) {
 
 
 
-<<<<<<< HEAD
-//============ FIND ONE TOPIC ==============================
-
-=======
 //============ GET ONE TOPIC ============================
->>>>>>> master
 
 router.get("/topic/:id", function(req, res) {
     db.Topic.findAll({
@@ -294,14 +225,6 @@ router.get("/topic/:id", function(req, res) {
     })
 
     .then(function(dbTopic) {
-<<<<<<< HEAD
-    	// console.log(dbTopic[0].dataValues);
-    	// console.log("-------")
-      // console.log(dbTopic)
-
-    	// console.log(dbTopic[0].dataValues.Links[1].dataValues)
-=======
->>>>>>> master
 
     	// console.log(dbTopic[0].dataValues);
     	// console.log("-------")
@@ -331,33 +254,23 @@ router.post("/create-subject", function(req, res) {
   })
   // pass the result of our call
     .then(function(data) {
-<<<<<<< HEAD
-    
-      // console.log(data);
-    
-=======
       // log the result to our terminal/bash window
       // console.log(data);
       
 
->>>>>>> master
       // redirect
       res.redirect("/");
     });
 });
 
 
-<<<<<<< HEAD
-// =============== GET : CREATE-TOPIC =======================
-=======
 // =============== GET :CREATE-TOPIC =============
->>>>>>> master
 
 
 router.get("/create-topic", function(req, res) {
   // replace old function with sequelize function
   db.Subject.findAll({
-   
+    // include: [db.Topic],
     order: [
       ["subject_name", "DESC"]
     ]
@@ -375,15 +288,11 @@ router.get("/create-topic", function(req, res) {
 });
 
 
-<<<<<<< HEAD
-// ==============  POST TOPIC ==============================
-=======
 // ==============  POST TOPIC =====================
 
->>>>>>> master
 
 router.post("/create-topic/create", function(req, res) {
- 
+  // edited burger create to add in a burger_name
   db.Topic.create({
     include: [db.Links],
     topic_name: req.body.topic_name,
@@ -391,24 +300,16 @@ router.post("/create-topic/create", function(req, res) {
   })
   // pass the result of our call
   .then(function(dbTopic) {
-<<<<<<< HEAD
-  
-=======
     
->>>>>>> master
     // console.log(dbTopic);
-    res.redirect("/"); 
+    res.redirect("/"); // ???? come back to this
   })
 
 });
 
 
 
-<<<<<<< HEAD
-// =============== GET : CREATE-LINKS ====================
-=======
 // =============== GET : CREATE-LINKS ================
->>>>>>> master
 
 
 router.get("/create-links", function(req, res) {
@@ -420,7 +321,7 @@ router.get("/create-links", function(req, res) {
     ]
   })
   .then(function(dbTopic) {
-    
+    // console.log(dbTopic[0].dataValues);
     console.log(dbTopic);
     // console.log("this is happening")
 
@@ -434,12 +335,8 @@ router.get("/create-links", function(req, res) {
 
 
 
-<<<<<<< HEAD
-// ==============  POST LINKS ==============================
-=======
 // ==============  POST LINKS =====================
 
->>>>>>> master
 
 router.post("/create-links/create", function(req, res) {
   db.Links.create({
@@ -452,10 +349,9 @@ router.post("/create-links/create", function(req, res) {
   })
   
   .then(function(dbLinks) {
-
+    // log the result to our terminal/bash window
     // console.log(dbLinks);
     // console.log(TopicId)
-
     // redirect
     res.redirect("/");
   })
@@ -465,13 +361,9 @@ router.post("/create-links/create", function(req, res) {
 });
 
 
-<<<<<<< HEAD
-// ==============  GET Field ============================
-=======
 // ==============  GET Field =====================
 
 
->>>>>>> master
 
 router.get("/field/:id", function(req, res) {
   // replace old function with sequelize function
@@ -482,7 +374,7 @@ router.get("/field/:id", function(req, res) {
     include: [db.Topic], 
 
     order: [
-      ["subject_name", "ASC"] 
+      ["subject_name", "ASC"] // what is the exact name here???
     ]
 
   })
@@ -500,11 +392,8 @@ router.get("/field/:id", function(req, res) {
 module.exports = router;
 
 
-<<<<<<< HEAD
-=======
 
 
 
 
 
->>>>>>> master
