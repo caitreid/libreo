@@ -34,15 +34,7 @@ app.set("view engine", "handlebars");
 var routes = require("./controllers/controllers");
 
 app.use("/", routes);
-app.use("/subject", routes);
-app.use("/create-subject", routes);
-app.use("/topic", routes);
-app.use("/create-topic", routes);
-app.use("links", routes);
-app.use("create-links", routes);
-app.use("/signup",routes);
-app.use("/login",routes);
-app.use("/welcome",routes);
+
 
 // listen on port 3000
 var port = process.env.PORT || 3000;
