@@ -6,5 +6,4 @@ Libreo is a free, online resource that allows users to learn about new subjects.
 
 https://sheltered-dusk-14499.herokuapp.com/
 
-
-https://user-images.githubusercontent.com/24304058/28181452-a870cdd8-67d6-11e7-900b-efbd4cfef5e4.gif
+![libreo](https://user-images.githubusercontent.com/24304058/28181452-a870cdd8-67d6-11e7-900b-efbd4cfef5e4.gif)
