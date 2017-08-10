@@ -40,7 +40,7 @@ app.use("/", routes);
 var port = process.env.PORT || 3000;
 db.sequelize.sync().then(function() {
   app.listen(port);
-  console.log("app is **LIVE** listening on port: " + port)
+  console.log("The app is **LIVE** listening on port: " + port)
 });
 
 
